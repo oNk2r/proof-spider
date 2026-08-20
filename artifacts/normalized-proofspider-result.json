@@ -1,0 +1,92 @@
+{
+  "productName": "WH-1000XM5 Premium Wireless Noise Canceling Headphones | Black",
+  "brand": "Sony",
+  "modelNumber": "WH-1000XM5",
+  "category": "Consumer Headphones",
+  "price": {
+    "value": 248,
+    "currency": "USD",
+    "symbol": "$",
+    "originalValue": 399.99,
+    "savings": "Save .99"
+  },
+  "heroImageUrl": "https://d1ncau8tqf99kp.cloudfront.net/converted/103364_original_local_1200x1050_v3_converted.webp",
+  "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+  "scrapedAt": "2026-08-20T19:01:22.927Z",
+  "collectorId": "c_mt1v2vo62kutyo7m6k",
+  "claims": [
+    {
+      "id": "claim-1",
+      "claimText": "Premium noise cancellation optimized to you 1",
+      "category": "Audio & ANC",
+      "verdict": "Qualified",
+      "confidence": 0.94,
+      "reason": "Backed by Sony Auto NC Optimizer and Integrated Processor V1, but qualified by Footnote 1: benchmark date established January 1, 2022 under JEITA guidelines.",
+      "evidence": [
+        {
+          "id": "ev-1-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Footnote 1",
+          "sourceExcerpt": "As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Benchmark date qualifier and methodology constraint.",
+          "type": "footnote"
+        }
+      ],
+      "unknowns": [
+        "Comparative noise reduction performance against models released after the 2022 JEITA test date."
+      ]
+    },
+    {
+      "id": "claim-2",
+      "claimText": "Up to 30-Hour Battery Life with Quick Charging",
+      "category": "Battery & Power",
+      "verdict": "Qualified",
+      "confidence": 0.96,
+      "reason": "30-hour playback tested with ANC On via AAC codec. Degrades over recharge cycles; high-bitrate LDAC reduces playtime.",
+      "evidence": [
+        {
+          "id": "ev-2-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Footnote 2",
+          "sourceExcerpt": "Actual performance varies based on settings, environmental conditions, volume, codecs, and usage. Battery capacity decreases over time and use.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Direct disclosure of codec-dependent drain and electrochemical cell aging.",
+          "type": "footnote"
+        }
+      ],
+      "unknowns": [
+        "Post-warranty official battery swap cost not disclosed on sales page."
+      ]
+    },
+    {
+      "id": "claim-3",
+      "claimText": "Magnificent Sound, engineered to perfection",
+      "category": "Audio & ANC",
+      "verdict": "Supported",
+      "confidence": 0.91,
+      "reason": "Direct public technical specifications detail 30mm carbon fiber composite dome drivers and Hi-Res Audio Wireless / LDAC support.",
+      "evidence": [
+        {
+          "id": "ev-3-1",
+          "field": "key_specs",
+          "extractedValue": "30mm Carbon Drivers, 4Hz-40kHz",
+          "sourceExcerpt": "Specially designed 30mm driver unit with light and rigid dome using carbon fiber composite material.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Direct acoustic component engineering documentation.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Subjective acoustic preference."
+      ]
+    }
+  ],
+  "verdictSummary": {
+    "total": 3,
+    "supported": 1,
+    "qualified": 2,
+    "conflicted": 0,
+    "unknown": 0
+  }
+}

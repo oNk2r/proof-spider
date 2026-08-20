@@ -1,0 +1,17 @@
+{
+  "collector_id": "c_mt1v2vo62kutyo7m6k",
+  "name": "proofspider-electronics-claims",
+  "status": "done",
+  "completed_steps": [
+    "prepare_intent_analyzer",
+    "planner",
+    "collector_mainatiner",
+    "output_schema_generator",
+    "code_generator",
+    "input_schema_generator",
+    "preview_runner",
+    "preview_picker"
+  ],
+  "view_url": "https://brightdata.com/cp/scrapers/c_mt1v2vo62kutyo7m6k",
+  "created_at": "2026-08-20T18:36:06.486Z"
+}
