@@ -1,0 +1,22 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4d54" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#ed1c24" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ed1c24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0d0d0e" stroke="#2e222a" stroke-width="2"/>
+  <!-- Radar circles -->
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#ed1c24" stroke-width="1.5" stroke-opacity="0.35"/>
+  <circle cx="32" cy="32" r="15" fill="none" stroke="#ed1c24" stroke-width="1.5" stroke-opacity="0.6"/>
+  <!-- Spider / Target Lines -->
+  <line x1="32" y1="6" x2="32" y2="58" stroke="#ed1c24" stroke-width="1.5" stroke-opacity="0.45"/>
+  <line x1="6" y1="32" x2="58" y2="32" stroke="#ed1c24" stroke-width="1.5" stroke-opacity="0.45"/>
+  <line x1="14" y1="14" x2="50" y2="50" stroke="#ed1c24" stroke-width="1.2" stroke-opacity="0.3"/>
+  <line x1="50" y1="14" x2="14" y2="50" stroke="#ed1c24" stroke-width="1.2" stroke-opacity="0.3"/>
+  <!-- Glowing Center Beacon -->
+  <circle cx="32" cy="32" r="10" fill="url(#coreGlow)"/>
+  <circle cx="32" cy="32" r="5.5" fill="#ed1c24"/>
+  <circle cx="32" cy="32" r="2.5" fill="#ffffff"/>
+</svg>
