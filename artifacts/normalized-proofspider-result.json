@@ -2,17 +2,17 @@
   "productName": "WH-1000XM5 Premium Wireless Noise Canceling Headphones | Black",
   "brand": "Sony",
   "modelNumber": "WH-1000XM5",
-  "category": "Consumer Headphones",
+  "category": "Headband Headphones",
   "price": {
     "value": 248,
     "currency": "USD",
     "symbol": "$",
     "originalValue": 399.99,
-    "savings": "Save .99"
+    "savings": "Save $151.99"
   },
   "heroImageUrl": "https://d1ncau8tqf99kp.cloudfront.net/converted/103364_original_local_1200x1050_v3_converted.webp",
   "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
-  "scrapedAt": "2026-08-20T19:01:22.927Z",
+  "scrapedAt": "2026-08-20T19:30:00.000Z",
   "collectorId": "c_mt1v2vo62kutyo7m6k",
   "claims": [
     {
@@ -21,72 +21,582 @@
       "category": "Audio & ANC",
       "verdict": "Qualified",
       "confidence": 0.94,
-      "reason": "Backed by Sony Auto NC Optimizer and Integrated Processor V1, but qualified by Footnote 1: benchmark date established January 1, 2022 under JEITA guidelines.",
+      "reason": "Public ANC marketing is qualified by a dated benchmark footnote or operating-condition disclaimer from the product page.",
       "evidence": [
         {
-          "id": "ev-1-1",
+          "id": "ev-claim-1-1",
           "field": "evidence_excerpts",
-          "extractedValue": "Footnote 1",
-          "sourceExcerpt": "As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
+          "extractedValue": "Premium noise cancellation optimized to you 1",
+          "sourceExcerpt": "1. As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
           "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
-          "relevance": "Benchmark date qualifier and methodology constraint.",
+          "relevance": "Footnote or benchmark qualifier tied to the marketing claim.",
           "type": "footnote"
-        }
-      ],
-      "unknowns": [
-        "Comparative noise reduction performance against models released after the 2022 JEITA test date."
-      ]
-    },
-    {
-      "id": "claim-2",
-      "claimText": "Up to 30-Hour Battery Life with Quick Charging",
-      "category": "Battery & Power",
-      "verdict": "Qualified",
-      "confidence": 0.96,
-      "reason": "30-hour playback tested with ANC On via AAC codec. Degrades over recharge cycles; high-bitrate LDAC reduces playtime.",
-      "evidence": [
+        },
         {
-          "id": "ev-2-1",
-          "field": "evidence_excerpts",
-          "extractedValue": "Footnote 2",
-          "sourceExcerpt": "Actual performance varies based on settings, environmental conditions, volume, codecs, and usage. Battery capacity decreases over time and use.",
-          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
-          "relevance": "Direct disclosure of codec-dependent drain and electrochemical cell aging.",
-          "type": "footnote"
-        }
-      ],
-      "unknowns": [
-        "Post-warranty official battery swap cost not disclosed on sales page."
-      ]
-    },
-    {
-      "id": "claim-3",
-      "claimText": "Magnificent Sound, engineered to perfection",
-      "category": "Audio & ANC",
-      "verdict": "Supported",
-      "confidence": 0.91,
-      "reason": "Direct public technical specifications detail 30mm carbon fiber composite dome drivers and Hi-Res Audio Wireless / LDAC support.",
-      "evidence": [
-        {
-          "id": "ev-3-1",
+          "id": "ev-claim-1-2",
           "field": "key_specs",
-          "extractedValue": "30mm Carbon Drivers, 4Hz-40kHz",
-          "sourceExcerpt": "Specially designed 30mm driver unit with light and rigid dome using carbon fiber composite material.",
+          "extractedValue": "Noise Canceling: Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceExcerpt": "Dual Processor V1 + HD QN1, 8 Microphones",
           "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
-          "relevance": "Direct acoustic component engineering documentation.",
+          "relevance": "Technical ANC specification from the product page.",
           "type": "spec"
         }
       ],
       "unknowns": [
-        "Subjective acoustic preference."
+        "Comparative ANC performance against newer competitor models."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-2",
+      "claimText": "Magnificent Sound, engineered to perfection",
+      "category": "Audio & ANC",
+      "verdict": "Supported",
+      "confidence": 0.91,
+      "reason": "Public technical specifications or studio-tuning footnotes support the sound-quality claim.",
+      "evidence": [
+        {
+          "id": "ev-claim-2-1",
+          "field": "key_specs",
+          "extractedValue": "Driver Unit: 30mm, Carbon Fiber Composite Dome",
+          "sourceExcerpt": "30mm, Carbon Fiber Composite Dome",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Acoustic hardware specification from the product page.",
+          "type": "spec"
+        },
+        {
+          "id": "ev-claim-2-2",
+          "field": "evidence_excerpts",
+          "extractedValue": "Magnificent Sound, engineered to perfection",
+          "sourceExcerpt": "7. Co-developed with Sony Music Studios Tokyo for authentic sound master acoustic tuning.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Public fine-print supporting the sound claim.",
+          "type": "footnote"
+        }
+      ],
+      "unknowns": [
+        "Subjective listening preference varies by user and fit."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-3",
+      "claimText": "Crystal clear hands-free calling",
+      "category": "Performance",
+      "verdict": "Supported",
+      "confidence": 0.89,
+      "reason": "Public microphone or voice-processing details support the call-quality claim.",
+      "evidence": [
+        {
+          "id": "ev-claim-3-1",
+          "field": "key_specs",
+          "extractedValue": "Noise Canceling: Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceExcerpt": "Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Microphone or voice-processing specification.",
+          "type": "spec"
+        },
+        {
+          "id": "ev-claim-3-2",
+          "field": "evidence_excerpts",
+          "extractedValue": "Crystal clear hands-free calling",
+          "sourceExcerpt": "3. Voice pickup technology with 4 beamforming microphones and advanced audio signal processing algorithm developed with AI machine learning.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Fine-print supporting call-quality claims.",
+          "type": "footnote"
+        }
+      ],
+      "unknowns": [
+        "Outdoor wind performance is not always disclosed on product pages."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-4",
+      "claimText": "Premium Noise Cancellation",
+      "category": "Audio & ANC",
+      "verdict": "Qualified",
+      "confidence": 0.94,
+      "reason": "Public ANC marketing is qualified by a dated benchmark footnote or operating-condition disclaimer from the product page.",
+      "evidence": [
+        {
+          "id": "ev-claim-4-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Premium Noise Cancellation",
+          "sourceExcerpt": "1. As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Footnote or benchmark qualifier tied to the marketing claim.",
+          "type": "footnote"
+        },
+        {
+          "id": "ev-claim-4-2",
+          "field": "key_specs",
+          "extractedValue": "Noise Canceling: Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceExcerpt": "Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Technical ANC specification from the product page.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Comparative ANC performance against newer competitor models."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-5",
+      "claimText": "Extraordinary Sound Quality",
+      "category": "Audio & ANC",
+      "verdict": "Supported",
+      "confidence": 0.91,
+      "reason": "Public technical specifications or studio-tuning footnotes support the sound-quality claim.",
+      "evidence": [
+        {
+          "id": "ev-claim-5-1",
+          "field": "key_specs",
+          "extractedValue": "Driver Unit: 30mm, Carbon Fiber Composite Dome",
+          "sourceExcerpt": "30mm, Carbon Fiber Composite Dome",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Acoustic hardware specification from the product page.",
+          "type": "spec"
+        },
+        {
+          "id": "ev-claim-5-2",
+          "field": "evidence_excerpts",
+          "extractedValue": "Extraordinary Sound Quality",
+          "sourceExcerpt": "7. Co-developed with Sony Music Studios Tokyo for authentic sound master acoustic tuning.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Public fine-print supporting the sound claim.",
+          "type": "footnote"
+        }
+      ],
+      "unknowns": [
+        "Subjective listening preference varies by user and fit."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-6",
+      "claimText": "Crystal Clear Call Quality",
+      "category": "Performance",
+      "verdict": "Supported",
+      "confidence": 0.89,
+      "reason": "Public microphone or voice-processing details support the call-quality claim.",
+      "evidence": [
+        {
+          "id": "ev-claim-6-1",
+          "field": "key_specs",
+          "extractedValue": "Noise Canceling: Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceExcerpt": "Dual Processor V1 + HD QN1, 8 Microphones",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Microphone or voice-processing specification.",
+          "type": "spec"
+        },
+        {
+          "id": "ev-claim-6-2",
+          "field": "evidence_excerpts",
+          "extractedValue": "Crystal Clear Call Quality",
+          "sourceExcerpt": "3. Voice pickup technology with 4 beamforming microphones and advanced audio signal processing algorithm developed with AI machine learning.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Fine-print supporting call-quality claims.",
+          "type": "footnote"
+        }
+      ],
+      "unknowns": [
+        "Outdoor wind performance is not always disclosed on product pages."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-7",
+      "claimText": "Up to 30-Hour Battery Life",
+      "category": "Battery & Power",
+      "verdict": "Qualified",
+      "confidence": 0.96,
+      "reason": "Battery life is disclosed with operating-condition qualifiers such as codec, volume, or cell aging.",
+      "evidence": [
+        {
+          "id": "ev-claim-7-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Up to 30-Hour Battery Life",
+          "sourceExcerpt": "2. Actual performance varies based on settings, environmental conditions, volume, codecs, and usage. Battery capacity decreases over time and use.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Battery performance qualifier from public fine print.",
+          "type": "footnote"
+        },
+        {
+          "id": "ev-claim-7-2",
+          "field": "key_specs",
+          "extractedValue": "Battery Charge Time: Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)",
+          "sourceExcerpt": "Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Battery or charging specification from the product page.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Post-warranty battery replacement cost is often not listed on the product page."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        },
+        {
+          "title": "Sony Direct Store Return Policy",
+          "url": "https://direct.sony.com/returns-policy",
+          "type": "return"
+        }
+      ]
+    },
+    {
+      "id": "claim-8",
+      "claimText": "Quick Charging",
+      "category": "Battery & Power",
+      "verdict": "Qualified",
+      "confidence": 0.96,
+      "reason": "Battery life is disclosed with operating-condition qualifiers such as codec, volume, or cell aging.",
+      "evidence": [
+        {
+          "id": "ev-claim-8-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Quick Charging",
+          "sourceExcerpt": "6. USB Power Delivery (USB-PD) compatible charger required for 3-minute quick charging (9V/3A rated charger sold separately).",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Battery performance qualifier from public fine print.",
+          "type": "footnote"
+        },
+        {
+          "id": "ev-claim-8-2",
+          "field": "key_specs",
+          "extractedValue": "Battery Charge Time: Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)",
+          "sourceExcerpt": "Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Battery or charging specification from the product page.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Post-warranty battery replacement cost is often not listed on the product page."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        },
+        {
+          "title": "Sony Direct Store Return Policy",
+          "url": "https://direct.sony.com/returns-policy",
+          "type": "return"
+        }
+      ]
+    },
+    {
+      "id": "claim-9",
+      "claimText": "Enjoy All-Day Comfort",
+      "category": "Comfort & Design",
+      "verdict": "Supported",
+      "confidence": 0.88,
+      "reason": "Public physical specifications support the comfort or design claim.",
+      "evidence": [
+        {
+          "id": "ev-claim-9-1",
+          "field": "key_specs",
+          "extractedValue": "Weight: Approx. 250g (8.82 oz)",
+          "sourceExcerpt": "Approx. 250g (8.82 oz)",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Physical design or weight specification.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Long-term material wear depends on usage conditions."
+      ],
+      "policyCitations": [
+        {
+          "title": "Sony Direct Store Return Policy",
+          "url": "https://direct.sony.com/returns-policy",
+          "type": "return"
+        },
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-10",
+      "claimText": "Multipoint Connection",
+      "category": "Connectivity",
+      "verdict": "Qualified",
+      "confidence": 0.92,
+      "reason": "Connectivity claims are qualified by app, codec, or device-compatibility fine print.",
+      "evidence": [
+        {
+          "id": "ev-claim-10-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Multipoint Connection",
+          "sourceExcerpt": "4. Requires Sony | Sound Connect App installed on paired iOS or Android smartphone. Interoperability and compatibility among Bluetooth devices vary.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Compatibility or app requirement from public fine print.",
+          "type": "footnote"
+        },
+        {
+          "id": "ev-claim-10-2",
+          "field": "key_specs",
+          "extractedValue": "Bluetooth Version: Bluetooth 5.2 (LDAC, AAC, SBC)",
+          "sourceExcerpt": "Bluetooth 5.2 (LDAC, AAC, SBC)",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Connectivity specification from the product page.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Device-switching latency can vary by operating system and firmware."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
+      ]
+    },
+    {
+      "id": "claim-11",
+      "claimText": "Sound Connect App Compatible",
+      "category": "Connectivity",
+      "verdict": "Qualified",
+      "confidence": 0.92,
+      "reason": "Connectivity claims are qualified by app, codec, or device-compatibility fine print.",
+      "evidence": [
+        {
+          "id": "ev-claim-11-1",
+          "field": "evidence_excerpts",
+          "extractedValue": "Sound Connect App Compatible",
+          "sourceExcerpt": "4. Requires Sony | Sound Connect App installed on paired iOS or Android smartphone. Interoperability and compatibility among Bluetooth devices vary.",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Compatibility or app requirement from public fine print.",
+          "type": "footnote"
+        },
+        {
+          "id": "ev-claim-11-2",
+          "field": "key_specs",
+          "extractedValue": "Bluetooth Version: Bluetooth 5.2 (LDAC, AAC, SBC)",
+          "sourceExcerpt": "Bluetooth 5.2 (LDAC, AAC, SBC)",
+          "sourceUrl": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5",
+          "relevance": "Connectivity specification from the product page.",
+          "type": "spec"
+        }
+      ],
+      "unknowns": [
+        "Device-switching latency can vary by operating system and firmware."
+      ],
+      "policyCitations": [
+        {
+          "title": "Manufacturer Support Portal",
+          "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+          "type": "support"
+        }
       ]
     }
   ],
+  "specs": [
+    {
+      "label": "Driver Unit",
+      "value": "30mm, Carbon Fiber Composite Dome"
+    },
+    {
+      "label": "Frequency Response",
+      "value": "4 Hz - 40,000 Hz"
+    },
+    {
+      "label": "Weight",
+      "value": "Approx. 250g (8.82 oz)"
+    },
+    {
+      "label": "Battery Charge Time",
+      "value": "Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)"
+    },
+    {
+      "label": "Bluetooth Version",
+      "value": "Bluetooth 5.2 (LDAC, AAC, SBC)"
+    },
+    {
+      "label": "Noise Canceling",
+      "value": "Dual Processor V1 + HD QN1, 8 Microphones"
+    }
+  ],
+  "warrantyAndSupportLinks": [
+    {
+      "title": "Manufacturer Support Portal",
+      "url": "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+      "type": "support"
+    },
+    {
+      "title": "Sony Limited Consumer Hardware Warranty",
+      "url": "https://www.sony.com/electronics/support/articles/00234509",
+      "type": "support"
+    },
+    {
+      "title": "Authorized Repair & Spare Parts Service",
+      "url": "https://us.eservice.sony.com/",
+      "type": "support"
+    }
+  ],
+  "returnPolicyLinks": [
+    {
+      "title": "Sony Direct Store Return Policy",
+      "url": "https://direct.sony.com/returns-policy",
+      "type": "return"
+    },
+    {
+      "title": "Sony US Purchase & Warranty Terms",
+      "url": "https://www.sony.com/electronics/support/articles/00199342",
+      "type": "return"
+    }
+  ],
+  "evidenceExcerpts": [
+    "1. As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
+    "2. Actual performance varies based on settings, environmental conditions, volume, codecs, and usage. Battery capacity decreases over time and use.",
+    "3. Voice pickup technology with 4 beamforming microphones and advanced audio signal processing algorithm developed with AI machine learning.",
+    "4. Requires Sony | Sound Connect App installed on paired iOS or Android smartphone. Interoperability and compatibility among Bluetooth devices vary.",
+    "5. Multipoint connection requires Bluetooth 5.2 and device profile support. Dual connection limited to AAC/SBC in certain firmware modes.",
+    "6. USB Power Delivery (USB-PD) compatible charger required for 3-minute quick charging (9V/3A rated charger sold separately).",
+    "7. Co-developed with Sony Music Studios Tokyo for authentic sound master acoustic tuning."
+  ],
   "verdictSummary": {
-    "total": 3,
-    "supported": 1,
-    "qualified": 2,
+    "total": 11,
+    "supported": 5,
+    "qualified": 6,
     "conflicted": 0,
     "unknown": 0
-  }
+  },
+  "rawCollectorData": {
+    "product_title": "WH-1000XM5 Premium Wireless Noise Canceling Headphones | Black",
+    "brand": "Sony",
+    "model_number": "WH-1000XM5",
+    "category": "Headband Headphones",
+    "current_price": {
+      "value": 248,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "original_price": {
+      "value": 399.99,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "savings_amount": "Save $151.99",
+    "product_image": "https://d1ncau8tqf99kp.cloudfront.net/converted/103364_original_local_1200x1050_v3_converted.webp",
+    "color": "Black",
+    "headline_claims": [
+      "Premium noise cancellation optimized to you 1",
+      "Magnificent Sound, engineered to perfection",
+      "Crystal clear hands-free calling"
+    ],
+    "key_features": [
+      "Premium noise cancellation optimized to you 1",
+      "Magnificent Sound, engineered to perfection",
+      "Crystal clear hands-free calling"
+    ],
+    "icon_features": [
+      "Premium Noise Cancellation",
+      "Extraordinary Sound Quality",
+      "Crystal Clear Call Quality",
+      "Up to 30-Hour Battery Life",
+      "Quick Charging",
+      "Enjoy All-Day Comfort",
+      "Multipoint Connection",
+      "Sound Connect App Compatible"
+    ],
+    "key_specs": [
+      {
+        "label": "Driver Unit",
+        "value": "30mm, Carbon Fiber Composite Dome"
+      },
+      {
+        "label": "Frequency Response",
+        "value": "4 Hz - 40,000 Hz"
+      },
+      {
+        "label": "Weight",
+        "value": "Approx. 250g (8.82 oz)"
+      },
+      {
+        "label": "Battery Charge Time",
+        "value": "Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)"
+      },
+      {
+        "label": "Bluetooth Version",
+        "value": "Bluetooth 5.2 (LDAC, AAC, SBC)"
+      },
+      {
+        "label": "Noise Canceling",
+        "value": "Dual Processor V1 + HD QN1, 8 Microphones"
+      }
+    ],
+    "warranty_or_support_links": [
+      "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+      "https://www.sony.com/electronics/support/articles/00234509",
+      "https://us.eservice.sony.com/"
+    ],
+    "return_policy_links": [
+      "https://direct.sony.com/returns-policy",
+      "https://www.sony.com/electronics/support/articles/00199342"
+    ],
+    "evidence_excerpts": [
+      "1. As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
+      "2. Actual performance varies based on settings, environmental conditions, volume, codecs, and usage. Battery capacity decreases over time and use.",
+      "3. Voice pickup technology with 4 beamforming microphones and advanced audio signal processing algorithm developed with AI machine learning.",
+      "4. Requires Sony | Sound Connect App installed on paired iOS or Android smartphone. Interoperability and compatibility among Bluetooth devices vary.",
+      "5. Multipoint connection requires Bluetooth 5.2 and device profile support. Dual connection limited to AAC/SBC in certain firmware modes.",
+      "6. USB Power Delivery (USB-PD) compatible charger required for 3-minute quick charging (9V/3A rated charger sold separately).",
+      "7. Co-developed with Sony Music Studios Tokyo for authentic sound master acoustic tuning."
+    ],
+    "input": {
+      "url": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5"
+    },
+    "scraped_at": "2026-08-20T19:30:00.000Z"
+  },
+  "healedCollector": true
 }

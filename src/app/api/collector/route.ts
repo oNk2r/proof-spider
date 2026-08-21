@@ -4,7 +4,6 @@ import { COLLECTOR_ID } from '@/lib/constants';
 
 
 export async function GET() {
-  const createArtifact = loadArtifactData('collector-create.json');
   const healArtifact = loadArtifactData('heal.json');
   const healApprovedArtifact = loadArtifactData('heal-approved.json');
 

@@ -66,7 +66,7 @@ export interface ProductAnalysis {
     conflicted: number;
     unknown: number;
   };
-  rawCollectorData?: any;
+  rawCollectorData?: unknown;
   healedCollector?: boolean;
 }
 

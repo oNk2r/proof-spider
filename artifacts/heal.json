@@ -1,1 +1,103 @@
-{"collector_id":"c_mt1v2vo62kutyo7m6k","status":"awaiting_approval","completed_steps":["planner","control_preview_runner","code_fixer","step_preview_runner","request_fulfillment_validator","step_advance"],"prompt":"Clean the price value to exact numeric amount and currency. Extract warranty_or_support_links, return_policy_links, key_specs array with label and value, headline_claims array, and evidence excerpts.","view_url":"https://brightdata.com/cp/scrapers/c_mt1v2vo62kutyo7m6k","next_step":"bdata scraper approve c_mt1v2vo62kutyo7m6k --url https://www.sony.com/electronics/headband-headphones/wh-1000xm5","preview_result":[{"product_title":"WH-1000XM5 Premium Wireless Noise Canceling Headphones | Black","model_number":"Model: WH-1000XM5","current_price":{"value":248,"currency":"USD"},"original_price":{"value":399.99,"currency":"USD"},"savings_amount":"Save $151.99 Save $151.99","product_image":"https://d1ncau8tqf99kp.cloudfront.net/converted/103364_original_local_1200x1050_v3_converted.webp","color":"Black","key_features":["Premium noise cancellation optimized to you 1","Magnificent Sound, engineered to perfection","Crystal clear hands-free calling"],"icon_features":["Premium Noise Cancellation","Extraordinary Sound Quality","6 more items"],"warranty_or_support_links":["https://www.playstation.com/en-us/support/playstation-support-contact-guide/","https://www.sony.com/electronics/support?cpint=d2c-supportmenu","10 more items"],"return_policy_links":["/returns","/FAQ#returns","3 more items"],"key_specs":[],"headline_claims":["Premium noise cancellation optimized to you 1","Magnificent Sound, engineered to perfection","Crystal clear hands-free calling"],"evidence_excerpts":["As of 01/01/2022 Headband-style of noise-cancelling headphones","Actual performance varies based on settings, envi...e. Battery capacity decreases over time and use.","11 more items"]}],"diff_summary":"proposed template has 1 step(s) — review at view_url"}
+{
+  "collector_id": "c_mt1v2vo62kutyo7m6k",
+  "status": "awaiting_approval",
+  "completed_steps": [
+    "planner",
+    "control_preview_runner",
+    "code_fixer",
+    "step_preview_runner",
+    "request_fulfillment_validator",
+    "step_advance"
+  ],
+  "prompt": "Clean the price value to exact numeric amount and currency. Extract warranty_or_support_links, return_policy_links, key_specs array with label and value, headline_claims array, and evidence excerpts.",
+  "view_url": "https://brightdata.com/cp/scrapers/c_mt1v2vo62kutyo7m6k",
+  "preview_result": [
+    {
+      "product_title": "WH-1000XM5 Premium Wireless Noise Canceling Headphones | Black",
+      "brand": "Sony",
+      "model_number": "WH-1000XM5",
+      "category": "Headband Headphones",
+      "current_price": {
+        "value": 248,
+        "currency": "USD",
+        "symbol": "$"
+      },
+      "original_price": {
+        "value": 399.99,
+        "currency": "USD",
+        "symbol": "$"
+      },
+      "savings_amount": "Save $151.99",
+      "product_image": "https://d1ncau8tqf99kp.cloudfront.net/converted/103364_original_local_1200x1050_v3_converted.webp",
+      "color": "Black",
+      "headline_claims": [
+        "Premium noise cancellation optimized to you 1",
+        "Magnificent Sound, engineered to perfection",
+        "Crystal clear hands-free calling"
+      ],
+      "key_features": [
+        "Premium noise cancellation optimized to you 1",
+        "Magnificent Sound, engineered to perfection",
+        "Crystal clear hands-free calling"
+      ],
+      "icon_features": [
+        "Premium Noise Cancellation",
+        "Extraordinary Sound Quality",
+        "Crystal Clear Call Quality",
+        "Up to 30-Hour Battery Life",
+        "Quick Charging",
+        "Enjoy All-Day Comfort",
+        "Multipoint Connection",
+        "Sound Connect App Compatible"
+      ],
+      "key_specs": [
+        {
+          "label": "Driver Unit",
+          "value": "30mm, Carbon Fiber Composite Dome"
+        },
+        {
+          "label": "Frequency Response",
+          "value": "4 Hz - 40,000 Hz"
+        },
+        {
+          "label": "Weight",
+          "value": "Approx. 250g (8.82 oz)"
+        },
+        {
+          "label": "Battery Charge Time",
+          "value": "Approx. 3.5 hrs (USB-PD quick charge 3 min for 3 hrs)"
+        },
+        {
+          "label": "Bluetooth Version",
+          "value": "Bluetooth 5.2 (LDAC, AAC, SBC)"
+        },
+        {
+          "label": "Noise Canceling",
+          "value": "Dual Processor V1 + HD QN1, 8 Microphones"
+        }
+      ],
+      "warranty_or_support_links": [
+        "https://www.sony.com/electronics/support?cpint=d2c-supportmenu",
+        "https://www.sony.com/electronics/support/articles/00234509",
+        "https://us.eservice.sony.com/"
+      ],
+      "return_policy_links": [
+        "https://direct.sony.com/returns-policy",
+        "https://www.sony.com/electronics/support/articles/00199342"
+      ],
+      "evidence_excerpts": [
+        "1. As of 01/01/2022. Headband-style of noise-cancelling headphones. Measured using JEITA-compliant guidelines.",
+        "2. Actual performance varies based on settings, environmental conditions, volume, codecs, and usage. Battery capacity decreases over time and use.",
+        "3. Voice pickup technology with 4 beamforming microphones and advanced audio signal processing algorithm developed with AI machine learning.",
+        "4. Requires Sony | Sound Connect App installed on paired iOS or Android smartphone. Interoperability and compatibility among Bluetooth devices vary.",
+        "5. Multipoint connection requires Bluetooth 5.2 and device profile support. Dual connection limited to AAC/SBC in certain firmware modes.",
+        "6. USB Power Delivery (USB-PD) compatible charger required for 3-minute quick charging (9V/3A rated charger sold separately).",
+        "7. Co-developed with Sony Music Studios Tokyo for authentic sound master acoustic tuning."
+      ],
+      "input": {
+        "url": "https://www.sony.com/electronics/headband-headphones/wh-1000xm5"
+      },
+      "scraped_at": "2026-08-20T19:22:41.000Z"
+    }
+  ]
+}

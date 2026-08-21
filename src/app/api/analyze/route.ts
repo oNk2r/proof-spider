@@ -12,15 +12,11 @@ export async function POST(req: NextRequest) {
     const url = body.url || 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5';
 
     console.log(`ProofSpider analyzing URL: ${url}`);
-    
-    // 1. Run or load Bright Data collector output
-    const { data: rawOutput, isLive, collectorId } = await runBrightDataScraper(url);
 
-    // 2. Normalize and classify claims using conservative verdict engine
-    const analysis = normalizeAndAnalyze(rawOutput, url);
+    const { data: rawOutput, isLive, collectorId, dataSource } = await runBrightDataScraper(url);
+    const analysis = normalizeAndAnalyze(rawOutput, url, { dataSource });
     analysis.collectorId = collectorId || COLLECTOR_ID;
 
-    // 3. Persist normalized result in artifacts/ as required by Step P
     try {
       const artifactsDir = path.join(process.cwd(), 'artifacts');
       if (!fs.existsSync(artifactsDir)) {
@@ -36,14 +32,16 @@ export async function POST(req: NextRequest) {
       success: true,
       analysis,
       isLive,
+      dataSource,
       collectorId: collectorId || COLLECTOR_ID,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Analysis error in /api/analyze:', error);
+    const message = error instanceof Error ? error.message : 'Failed to analyze product claims';
     return NextResponse.json(
       {
         success: false,
-        error: error.message || 'Failed to analyze product claims',
+        error: message,
       },
       { status: 500 }
     );

@@ -6,10 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "scraper:create": "npx -p @brightdata/cli bdata scraper create \"Extract consumer electronics product claims, specs, footnotes, warranty links, and return policy links from public product pages.\" --name proofspider-electronics-claims --pretty -o artifacts/collector-create.json",
+    "scraper:run": "npx -p @brightdata/cli bdata scraper run c_mt1v2vo62kutyo7m6k",
+    "scraper:heal": "npx -p @brightdata/cli bdata scraper heal c_mt1v2vo62kutyo7m6k \"Clean the price value to exact numeric amount and currency. Extract warranty_or_support_links, return_policy_links, key_specs array with label and value, headline_claims array, and evidence excerpts.\" --url https://www.sony.com/electronics/headband-headphones/wh-1000xm5 --pretty -o artifacts/heal.json",
+    "scraper:approve": "npx -p @brightdata/cli bdata scraper approve c_mt1v2vo62kutyo7m6k --pretty -o artifacts/heal-approved.json",
+    "scraper:verify": "npx -p @brightdata/cli bdata scraper run c_mt1v2vo62kutyo7m6k https://www.sony.com/electronics/headband-headphones/wh-1000xm5 --pretty -o artifacts/sony-wh1000xm5-healed.json"
   },
   "dependencies": {
-    "@xyflow/react": "^12.11.3",
     "lucide-react": "^1.33.0",
     "next": "16.3.1",
     "react": "19.2.8",
