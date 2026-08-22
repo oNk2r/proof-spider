@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect, useRef } from 'react';
 import { ArrowRight, Link as LinkIcon, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -16,16 +16,195 @@ const SIGNALS = [
   ['05', 'SPC', 'Specifications'], ['06', 'SUP', 'Support links'], ['07', 'RTN', 'Return policy'], ['08', 'EVD', 'Evidence trail'],
 ];
 
+/* ---- Web particles floating in the background ---- */
+function WebParticles() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    const dpr = window.devicePixelRatio || 1;
+    const particles: { x: number; y: number; vx: number; vy: number; r: number; o: number; color: string }[] = [];
+
+    function resize() {
+      if (!canvas) return;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function init() {
+      resize();
+      const count = Math.min(65, Math.floor(window.innerWidth / 22));
+      particles.length = 0;
+      for (let i = 0; i < count; i++) {
+        const isRed = Math.random() > 0.45;
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 2.2 + 0.6,
+          o: Math.random() * 0.5 + 0.12,
+          color: isRed ? `rgba(237,28,36,` : `rgba(30,64,175,`,
+        });
+      }
+    }
+
+    function draw() {
+      if (!ctx || !canvas) return;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw web connections between nearby particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            const alpha = (1 - dist / 150) * 0.12;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(237,28,36,${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.o + ')';
+        ctx.fill();
+
+        // Glow
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + (p.o * 0.15) + ')';
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    init();
+    draw();
+    window.addEventListener('resize', init);
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', init); };
+  }, []);
+
+  return <canvas ref={canvasRef} className="ps-web-canvas" aria-hidden="true" />;
+}
+
+/* ---- SVG Spider Web pattern for the hero background (static coords to avoid hydration mismatch) ---- */
+function SpiderWebSVG() {
+  return (
+    <svg className="ps-spider-web-svg" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      {/* Radial lines from center (every 30°) */}
+      <line x1="400" y1="400" x2="800" y2="400" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="746.41" y2="200" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="600" y2="53.59" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="400" y2="0" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="200" y2="53.59" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="53.59" y2="200" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="0" y2="400" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="53.59" y2="600" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="200" y2="746.41" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="400" y2="800" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="600" y2="746.41" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      <line x1="400" y1="400" x2="746.41" y2="600" stroke="rgba(237,28,36,0.08)" strokeWidth="0.8" />
+      {/* Concentric web rings */}
+      <polygon points="480,400 469.28,360 440,330.72 400,320 360,330.72 330.72,360 320,400 330.72,440 360,469.28 400,480 440,469.28 469.28,440" fill="none" stroke="rgba(237,28,36,0.06)" strokeWidth="0.6" />
+      <polygon points="560,400 538.56,320 480,261.44 400,240 320,261.44 261.44,320 240,400 261.44,480 320,538.56 400,560 480,538.56 538.56,480" fill="none" stroke="rgba(237,28,36,0.06)" strokeWidth="0.6" />
+      <polygon points="640,400 607.85,280 520,192.15 400,160 280,192.15 192.15,280 160,400 192.15,520 280,607.85 400,640 520,607.85 607.85,520" fill="none" stroke="rgba(237,28,36,0.06)" strokeWidth="0.6" />
+      <polygon points="720,400 677.13,240 560,122.87 400,80 240,122.87 122.87,240 80,400 122.87,560 240,677.13 400,720 560,677.13 677.13,560" fill="none" stroke="rgba(237,28,36,0.06)" strokeWidth="0.6" />
+      <polygon points="800,400 746.41,200 600,53.59 400,0 200,53.59 53.59,200 0,400 53.59,600 200,746.41 400,800 600,746.41 746.41,600" fill="none" stroke="rgba(237,28,36,0.06)" strokeWidth="0.6" />
+    </svg>
+  );
+}
+
+/* ---- Animated web lines that shoot across the screen ---- */
+function WebStrings() {
+  return (
+    <div className="ps-web-strings" aria-hidden="true">
+      <div className="ps-web-string ps-ws-1" />
+      <div className="ps-web-string ps-ws-2" />
+      <div className="ps-web-string ps-ws-3" />
+      <div className="ps-web-string ps-ws-4" />
+      <div className="ps-web-string ps-ws-5" />
+    </div>
+  );
+}
+
+const SIGNALS_LEFT = [
+  { num: '01', code: 'TITLE', label: 'Product Title', excerpt: 'WH-1000XM5 ANC Headphones', status: 'VERIFIED' },
+  { num: '02', code: 'SKU', label: 'Model / SKU', excerpt: 'WH1000XM5/B • Sony Catalog', status: 'MATCHED' },
+  { num: '03', code: 'VAL', label: 'Price Analysis', excerpt: '$248.00 (Save $151.99)', status: '-38% MSRP' },
+  { num: '04', code: 'CLM', label: 'Core Claims', excerpt: '4 Claims • 1 Qualified, 3 Supp', status: 'AUDITED' },
+];
+
+const SIGNALS_RIGHT = [
+  { num: '05', code: 'SPC', label: 'Specifications', excerpt: 'Dual Proc V1 + QN1 • 8-Mic', status: 'EXTRACTED' },
+  { num: '06', code: 'SUP', label: 'Support Links', excerpt: 'Sony Direct OEM Manuals', status: 'RESOLVED' },
+  { num: '07', code: 'RTN', label: 'Return Policy', excerpt: '30-Day Sony D2C Guarantee', status: 'VERIFIED' },
+  { num: '08', code: 'EVD', label: 'Evidence Trail', excerpt: 'JEITA Benchmark Footnotes', status: '100% LINKED' },
+];
+
+const PRODUCT_PINS = [
+  { id: 'pin-1', top: '16%', left: '44%', label: 'LOC: SKU // WH-1000XM5', sub: 'Active Model Node' },
+  { id: 'pin-2', top: '64%', left: '26%', label: 'LOC: SPC // Dual V1+QN1 ANC', sub: 'Processor Core' },
+  { id: 'pin-3', top: '56%', left: '72%', label: 'LOC: CLM // 8-Mic Beamforming', sub: 'Audio & ANC Claim' },
+  { id: 'pin-4', top: '82%', left: '46%', label: 'LOC: VAL // $248.00 USD', sub: 'Live Verified Price' },
+];
+
 export default function Home() {
   const router = useRouter();
   const [url, setUrl] = useState('');
-  const analyze = (targetUrl: string) => { const nextUrl = targetUrl.trim(); if (nextUrl) router.push(`/dashboard?url=${encodeURIComponent(nextUrl)}`); };
-  const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); analyze(url); };
+  const [activePin, setActivePin] = useState<string | null>(null);
+  const [activeSignal, setActiveSignal] = useState<string | null>(null);
+
+  const analyze = (targetUrl: string) => {
+    const nextUrl = targetUrl.trim();
+    if (nextUrl) router.push(`/dashboard?url=${encodeURIComponent(nextUrl)}`);
+  };
+
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    analyze(url);
+  };
 
   return <main className="ps-home">
+    <WebParticles />
+    <SpiderWebSVG />
+    <WebStrings />
+
+    {/* Ambient glow orbs */}
+    <div className="ps-ambient-orbs" aria-hidden="true">
+      <div className="ps-orb ps-orb-red" />
+      <div className="ps-orb ps-orb-blue" />
+      <div className="ps-orb ps-orb-red-2" />
+    </div>
+
     <nav className="ps-nav" aria-label="Primary navigation">
       <Link href="/" className="ps-logo">PROOF<span>·</span>SPIDER</Link>
-      <p className="ps-nav-status"><i /> PUBLIC EVIDENCE ANALYSIS</p>
+      <p className="ps-nav-status"><i />PUBLIC EVIDENCE ANALYSIS</p>
       <button onClick={() => document.getElementById('url-input')?.focus()} className="ps-nav-action">ANALYZE NOW <ArrowRight size={15} /></button>
     </nav>
 
@@ -43,10 +222,122 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="ps-core-section" aria-label="Evidence dimensions">
-      <div className="ps-signals ps-signals-left">{SIGNALS.slice(0, 4).map(([number, code, label]) => <div key={code} className="ps-signal"><div><b>{number} LOC: {code}</b><span>{label}</span></div><i /><hr /></div>)}</div>
-      <div className="ps-core" aria-hidden="true"><div /><div /><div /><span><i /></span><p>COLLECTOR<br />CORE</p></div>
-      <div className="ps-signals ps-signals-right">{SIGNALS.slice(4).map(([number, code, label]) => <div key={code} className="ps-signal"><hr /><i /><div><b>{number} LOC: {code}</b><span>{label}</span></div></div>)}</div>
+    {/* Live Product Evidence Radar Section */}
+    <section className="ps-product-inspector-section" aria-label="Live Evidence Target Scanner">
+      <div className="ps-section-header">
+        <span className="ps-hud-tag"><i className="ps-signal-dot" /> LIVE PRODUCT EVIDENCE SCANNER</span>
+        <h2>REAL-TIME TARGET AUDIT</h2>
+        <p>Interactive telemetry extracted from live public product specifications and benchmark footnotes</p>
+      </div>
+
+      <div className="ps-inspector-stage">
+        {/* Left Signals */}
+        <div className="ps-signals-col ps-signals-left-col">
+          {SIGNALS_LEFT.map((sig) => (
+            <div
+              key={sig.code}
+              className={`ps-signal-card ${activeSignal === sig.code ? 'active' : ''}`}
+              onMouseEnter={() => setActiveSignal(sig.code)}
+              onMouseLeave={() => setActiveSignal(null)}
+              onClick={() => analyze(EXAMPLES[0].url)}
+            >
+              <div className="ps-signal-card-head">
+                <b>{sig.num} LOC: {sig.code}</b>
+                <span className="ps-sig-badge">{sig.status}</span>
+              </div>
+              <p className="ps-sig-label">{sig.label}</p>
+              <p className="ps-sig-val">{sig.excerpt}</p>
+              <div className="ps-sig-beam" />
+            </div>
+          ))}
+        </div>
+
+        {/* Center Live Product Showcase */}
+        <div className="ps-product-stage">
+          {/* Holographic scanner container */}
+          <div className="ps-product-frame">
+            {/* Corner HUD Brackets */}
+            <div className="ps-hud-corner ps-hud-tl" />
+            <div className="ps-hud-corner ps-hud-tr" />
+            <div className="ps-hud-corner ps-hud-bl" />
+            <div className="ps-hud-corner ps-hud-br" />
+
+            {/* Laser Scanning Line */}
+            <div className="ps-scanner-beam" />
+            
+            {/* Radar Circular Grid Overlay */}
+            <div className="ps-radar-rings" aria-hidden="true">
+              <div className="ps-radar-ring-1" />
+              <div className="ps-radar-ring-2" />
+              <div className="ps-radar-ring-3" />
+              <div className="ps-radar-sweep" />
+            </div>
+
+            {/* Product Image */}
+            <div className="ps-product-image-wrap">
+              <img
+                src="/assets/product-hero.jpg"
+                alt="Sony WH-1000XM5 Live Product Target"
+                className="ps-product-image"
+              />
+            </div>
+
+            {/* Interactive Target Pins on Product */}
+            {PRODUCT_PINS.map((pin) => (
+              <div
+                key={pin.id}
+                className={`ps-target-pin ${activePin === pin.id ? 'active' : ''}`}
+                style={{ top: pin.top, left: pin.left }}
+                onMouseEnter={() => setActivePin(pin.id)}
+                onMouseLeave={() => setActivePin(null)}
+              >
+                <div className="ps-pin-pulse" />
+                <div className="ps-pin-dot" />
+                <div className="ps-pin-callout">
+                  <b>{pin.label}</b>
+                  <span>{pin.sub}</span>
+                </div>
+              </div>
+            ))}
+
+            {/* HUD Status Bar at bottom of product */}
+            <div className="ps-product-hud-bar">
+              <div className="ps-hud-meta">
+                <span className="ps-hud-target-name">SONY WH-1000XM5</span>
+                <span className="ps-hud-price">$248.00 <del>$399.99</del></span>
+              </div>
+              <button
+                type="button"
+                onClick={() => analyze(EXAMPLES[0].url)}
+                className="ps-hud-action"
+              >
+                OPEN DOSSIER <ArrowRight size={13} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Signals */}
+        <div className="ps-signals-col ps-signals-right-col">
+          {SIGNALS_RIGHT.map((sig) => (
+            <div
+              key={sig.code}
+              className={`ps-signal-card ${activeSignal === sig.code ? 'active' : ''}`}
+              onMouseEnter={() => setActiveSignal(sig.code)}
+              onMouseLeave={() => setActiveSignal(null)}
+              onClick={() => analyze(EXAMPLES[0].url)}
+            >
+              <div className="ps-signal-card-head">
+                <b>{sig.num} LOC: {sig.code}</b>
+                <span className="ps-sig-badge">{sig.status}</span>
+              </div>
+              <p className="ps-sig-label">{sig.label}</p>
+              <p className="ps-sig-val">{sig.excerpt}</p>
+              <div className="ps-sig-beam" />
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
 
     <footer className="ps-footer"><div><span>08 EVIDENCE DIMENSIONS</span><span>04 VERDICT TYPES</span><span>100% SOURCE LINKED</span></div><p>© 2026 PROOFSPIDER <span>{'//'}</span> NODE-001-ALPHA</p><aside><span>SUPPORTED <i className="green" /></span><span>QUALIFIED <i className="blue" /></span><span>CONFLICTED <i className="orange" /></span><span>UNKNOWN <i /></span></aside></footer>
