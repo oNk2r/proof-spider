@@ -1,0 +1,97 @@
+[
+  {
+    "product_title": "AirPods Max - Space Gray",
+    "brand": "Apple",
+    "model_number": "MGYH3AM/A",
+    "category": "Over-Ear Headphones",
+    "current_price": {
+      "value": 549,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "original_price": {
+      "value": 549,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "savings_amount": "",
+    "product_image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011?wid=940&hei=1112&fmt=png-alpha",
+    "color": "Space Gray",
+    "headline_claims": [
+      "Pro-level Active Noise Cancellation 1",
+      "Personalized Spatial Audio with dynamic head tracking 2",
+      "Up to 20 hours of battery life with ANC enabled 3"
+    ],
+    "key_features": [
+      "Pro-level Active Noise Cancellation 1",
+      "Personalized Spatial Audio with dynamic head tracking 2",
+      "Up to 20 hours of battery life with ANC enabled 3",
+      "Designed with a breathable knit mesh canopy and memory foam ear cushions for exceptional acoustic seal",
+      "Apple-designed H1 chip in each ear cup for computational audio"
+    ],
+    "icon_features": [
+      "Active Noise Cancellation",
+      "Transparency Mode",
+      "Personalized Spatial Audio",
+      "Up to 20h Listening Time",
+      "Knit Mesh Canopy",
+      "Apple H1 Headphone Chip",
+      "Smart Case Included",
+      "Lossless Audio Support"
+    ],
+    "key_specs": [
+      {
+        "label": "Audio Technology",
+        "value": "Apple-designed 40mm dynamic driver, Pro-level Active Noise Cancellation"
+      },
+      {
+        "label": "Sensors",
+        "value": "Optical sensor, Position sensor, Case-detect sensor, Accelerometer, Gyroscope"
+      },
+      {
+        "label": "Microphones",
+        "value": "Nine microphones total: Eight microphones for Active Noise Cancellation, Three microphones for voice pickup"
+      },
+      {
+        "label": "Chip",
+        "value": "Apple H1 headphone chip (each ear cup)"
+      },
+      {
+        "label": "Battery Life",
+        "value": "Up to 20 hours of listening time on a single charge with ANC or Transparency mode"
+      },
+      {
+        "label": "Charging",
+        "value": "5 minutes of charge time provides around 1.5 hours of listening time"
+      },
+      {
+        "label": "Weight",
+        "value": "384.8 grams (13.6 ounces)"
+      },
+      {
+        "label": "Connectivity",
+        "value": "Bluetooth 5.0 wireless technology"
+      }
+    ],
+    "warranty_or_support_links": [
+      "https://www.apple.com/legal/warranty/products/accessory-warranty-english.html",
+      "https://support.apple.com/airpods/repair",
+      "https://support.apple.com/airpods-max"
+    ],
+    "return_policy_links": [
+      "https://www.apple.com/shop/help/returns_refund",
+      "https://www.apple.com/legal/sales-support/sales-policies/"
+    ],
+    "evidence_excerpts": [
+      "1. Testing conducted by Apple in August 2024 using preproduction AirPods Max paired with iPhone 16 Pro Max. Battery life depends on device settings, environment, usage, and many other factors.",
+      "2. Personalized Spatial Audio requires compatible hardware and software. Compatible content required in supported apps.",
+      "3. 5-minute charge testing conducted with drained AirPods Max; 5-minute charge provided up to 1.5 hours audio playback with volume set to 50%.",
+      "4. Storage in the Smart Case preserves battery charge in ultra-low-power state.",
+      "5. Lossless Audio requires compatible USB-C wired connection with supported source device."
+    ],
+    "input": {
+      "url": "https://www.apple.com/airpods-max/"
+    },
+    "scraped_at": "2026-08-21T14:15:00.000Z"
+  }
+]

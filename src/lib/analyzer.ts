@@ -30,11 +30,18 @@ function linksToPolicyCitations(
 
 function titleFromPolicyUrl(url: string, type: PolicyCitation['type'], index: number): string {
   const lower = url.toLowerCase();
-  if (lower.includes('returns-policy')) return 'Sony Direct Store Return Policy';
-  if (lower.includes('articles/00234509')) return 'Sony Limited Consumer Hardware Warranty';
+  if (lower.includes('apple.com') && lower.includes('warranty')) return 'Apple Hardware Limited Warranty';
+  if (lower.includes('apple.com') && lower.includes('returns')) return 'Apple Sales & Refund Policy';
+  if (lower.includes('apple.com') && lower.includes('repair')) return 'Apple Official Service & Repair Terms';
+  if (lower.includes('bose.com') && lower.includes('warranty')) return 'Bose Limited Consumer Warranty';
+  if (lower.includes('bose.com') && lower.includes('returns')) return 'Bose 90-Day Risk-Free Trial & Returns';
+  if (lower.includes('samsung.com') && lower.includes('warranty')) return 'Samsung Standard Limited Warranty';
+  if (lower.includes('samsung.com') && (lower.includes('trade-in') || lower.includes('return') || lower.includes('shopping'))) return 'Samsung Direct Return & Trade-In Terms';
+  if (lower.includes('returns-policy') || lower.includes('/returns')) return 'Manufacturer Return & Refund Policy';
+  if (lower.includes('articles/00234509') || lower.includes('/warranty')) return 'Sony Limited Consumer Hardware Warranty';
   if (lower.includes('articles/00199342')) return 'Sony US Purchase & Warranty Terms';
   if (lower.includes('eservice.sony.com')) return 'Authorized Repair & Spare Parts Service';
-  if (lower.includes('/support')) return 'Manufacturer Support Portal';
+  if (lower.includes('/support') || lower.includes('service')) return 'Official Support & Service Portal';
   if (type === 'return') return `Return Policy Link ${index + 1}`;
   if (type === 'warranty') return `Warranty Policy Link ${index + 1}`;
   return `Support Link ${index + 1}`;
@@ -398,8 +405,8 @@ function classifyClaim(
     };
   }
 
-  if (text.includes('comfort') || text.includes('design') || text.includes('lightweight') || text.includes('leather') || text.includes('slider')) {
-    const spec = findRelevantSpec(specs, ['weight', 'comfort', 'design']);
+  if (text.includes('comfort') || text.includes('design') || text.includes('lightweight') || text.includes('leather') || text.includes('slider') || text.includes('canopy') || text.includes('cushion')) {
+    const spec = findRelevantSpec(specs, ['weight', 'comfort', 'design', 'audio technology', 'sensors']);
 
     if (!spec) {
       return unknownClaim(id, claimText, 'Comfort & Design', sourceUrl, 'Comfort marketing was found, but no matching physical spec was extracted.');
@@ -423,6 +430,95 @@ function classifyClaim(
       ]),
       unknowns: ['Long-term material wear depends on usage conditions.'],
       policyCitations: [...returnLinks.slice(0, 1), ...warrantyLinks.slice(0, 1)],
+    };
+  }
+
+  if (text.includes('camera') || text.includes('zoom') || text.includes('lens') || text.includes('provisual') || text.includes('megapixel') || text.includes('200mp')) {
+    const excerpt = findRelevantExcerpt(excerpts, ['200mp', 'optical', 'zoom', 'sensor', 'camera']) ||
+      (footnoteNumber ? excerpts.find((item) => item.startsWith(`${footnoteNumber}.`)) : undefined);
+    const spec = findRelevantSpec(specs, ['camera', 'rear', 'front', 'zoom', 'sensor']);
+
+    if (!excerpt && !spec) {
+      return unknownClaim(id, claimText, 'Performance', sourceUrl, 'Camera marketing was found, but no optical spec or sensor footnote was extracted.');
+    }
+
+    return {
+      id,
+      claimText,
+      category: 'Performance',
+      verdict: excerpt ? 'Qualified' : 'Supported',
+      confidence: excerpt ? 0.95 : 0.90,
+      reason: excerpt
+        ? 'Camera capabilities are qualified by sensor resolution binning, lighting conditions, or optical zoom footnotes.'
+        : 'Technical optical specifications support the stated camera configuration.',
+      evidence: buildEvidence(id, sourceUrl, [
+        spec ? { field: 'key_specs', extractedValue: `${spec.label}: ${spec.value}`, sourceExcerpt: spec.value, relevance: 'Camera optical hardware specification.', type: 'spec' } : null,
+        excerpt ? { field: 'evidence_excerpts', extractedValue: claimText, sourceExcerpt: excerpt, relevance: 'Footnote clarifying optical zoom or resolution conditions.', type: 'footnote' } : null,
+      ]),
+      unknowns: ['Low-light noise performance and dynamic range vary by scene processing.'],
+      policyCitations: warrantyLinks.slice(0, 1),
+    };
+  }
+
+  if (text.includes('ai') || text.includes('processor') || text.includes('snapdragon') || text.includes('chip') || text.includes('translate') || text.includes('circle to search') || text.includes('h1')) {
+    const excerpt = findRelevantExcerpt(excerpts, ['galaxy ai', 'ai machine learning', 'login', 'cloud-based', 'free until', 'edge-ai', 'h1']) ||
+      (footnoteNumber ? excerpts.find((item) => item.startsWith(`${footnoteNumber}.`)) : undefined);
+    const spec = findRelevantSpec(specs, ['processor', 'chip', 'cpu', 'audio technology']);
+
+    return {
+      id,
+      claimText,
+      category: 'Performance',
+      verdict: excerpt ? 'Qualified' : 'Supported',
+      confidence: 0.93,
+      reason: excerpt
+        ? 'AI features are qualified by cloud-service terms, account requirements, or computational audio chip specifications.'
+        : 'Processor hardware specifications support computational capabilities.',
+      evidence: buildEvidence(id, sourceUrl, [
+        spec ? { field: 'key_specs', extractedValue: `${spec.label}: ${spec.value}`, sourceExcerpt: spec.value, relevance: 'Processor specification from product sheet.', type: 'spec' } : null,
+        excerpt ? { field: 'evidence_excerpts', extractedValue: claimText, sourceExcerpt: excerpt, relevance: 'Terms, chip, or account qualifiers for AI features.', type: 'footnote' } : null,
+      ]),
+      unknowns: ['Cloud AI availability is subject to future subscription terms.'],
+      policyCitations: warrantyLinks.slice(0, 1),
+    };
+  }
+
+  if (text.includes('display') || text.includes('screen') || text.includes('amoled') || text.includes('nits') || text.includes('brightness') || text.includes('120hz')) {
+    const spec = findRelevantSpec(specs, ['display', 'screen', 'resolution', 'amoled']);
+    return {
+      id,
+      claimText,
+      category: 'Performance',
+      verdict: 'Supported',
+      confidence: 0.92,
+      reason: 'Display specifications confirm panel type, resolution, and peak luminance.',
+      evidence: buildEvidence(id, sourceUrl, [
+        spec ? { field: 'key_specs', extractedValue: `${spec.label}: ${spec.value}`, sourceExcerpt: spec.value, relevance: 'Display panel technical specification.', type: 'spec' } : null,
+      ]),
+      unknowns: ['Peak outdoor brightness depends on automatic brightness control settings.'],
+      policyCitations: warrantyLinks.slice(0, 1),
+    };
+  }
+
+  if (text.includes('titanium') || text.includes('gorilla') || text.includes('armor') || text.includes('water') || text.includes('ip68') || text.includes('mesh')) {
+    const excerpt = findRelevantExcerpt(excerpts, ['ip68', 'fresh water', 'submersion', 'gorilla', 'armor']) ||
+      (footnoteNumber ? excerpts.find((item) => item.startsWith(`${footnoteNumber}.`)) : undefined);
+    const spec = findRelevantSpec(specs, ['durability', 'frame', 'weight', 'material']);
+    return {
+      id,
+      claimText,
+      category: 'Durability & Materials',
+      verdict: excerpt ? 'Qualified' : 'Supported',
+      confidence: 0.94,
+      reason: excerpt
+        ? 'Durability claims and water resistance are accompanied by standardized laboratory rating qualifiers.'
+        : 'Materials specifications support structural claims.',
+      evidence: buildEvidence(id, sourceUrl, [
+        spec ? { field: 'key_specs', extractedValue: `${spec.label}: ${spec.value}`, sourceExcerpt: spec.value, relevance: 'Chassis material or ingress protection spec.', type: 'spec' } : null,
+        excerpt ? { field: 'evidence_excerpts', extractedValue: claimText, sourceExcerpt: excerpt, relevance: 'Water resistance or testing methodology disclaimer.', type: 'footnote' } : null,
+      ]),
+      unknowns: ['Water resistance is not permanent and may decrease as a result of normal wear.'],
+      policyCitations: warrantyLinks.slice(0, 1),
     };
   }
 

@@ -1,0 +1,88 @@
+[
+  {
+    "product_title": "Bose QuietComfort Ultra Wireless Noise Cancelling Headphones | Black",
+    "brand": "Bose",
+    "model_number": "880066-0100",
+    "category": "Headphones",
+    "current_price": {
+      "value": 379,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "original_price": {
+      "value": 429,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "savings_amount": "Save $50.00",
+    "product_image": "https://assets.bosecreative.com/transform/4b17bc56-d667-4632-9df7-2384ba2fbafb/QCU_Headphone_Hero_Black",
+    "color": "Black",
+    "headline_claims": [
+      "World-class noise cancellation optimized with CustomTune 1",
+      "Breakthrough spatialized audio with Bose Immersive Audio",
+      "Up to 24 hours of battery life on a single charge 2"
+    ],
+    "key_features": [
+      "World-class noise cancellation optimized with CustomTune 1",
+      "Breakthrough spatialized audio with Bose Immersive Audio",
+      "Up to 24 hours of battery life on a single charge 2",
+      "CustomTune technology personalizes audio and ANC to your ear profile",
+      "Crystal-clear phone calls with advanced multi-mic beamforming"
+    ],
+    "icon_features": [
+      "CustomTune ANC",
+      "Bose Immersive Audio",
+      "Aware Mode with ActiveSense",
+      "24-Hour Battery Life",
+      "Snapdragon Sound Certified",
+      "Multipoint Bluetooth 5.3",
+      "Bose App Equalizer",
+      "Ultra-Plush Ear Cushions"
+    ],
+    "key_specs": [
+      {
+        "label": "Noise Canceling",
+        "value": "CustomTune Active Noise Cancelling with Quiet, Aware, and Immersion Modes"
+      },
+      {
+        "label": "Battery Life",
+        "value": "Up to 24 hours (Up to 18 hours with Immersive Audio enabled)"
+      },
+      {
+        "label": "Battery Charge Time",
+        "value": "3 hours (15-min quick charge provides up to 2.5 hours playtime)"
+      },
+      {
+        "label": "Bluetooth Version",
+        "value": "Bluetooth 5.3 (aptX Adaptive, AAC, SBC, Snapdragon Sound)"
+      },
+      {
+        "label": "Weight",
+        "value": "252 g (8.9 oz)"
+      },
+      {
+        "label": "Microphones",
+        "value": "Beamforming microphone array for voice isolation"
+      }
+    ],
+    "warranty_or_support_links": [
+      "https://www.bose.com/support/warranty-information",
+      "https://support.bose.com/s/product/bose-quietcomfort-ultra-headphones",
+      "https://www.bose.com/contact-us"
+    ],
+    "return_policy_links": [
+      "https://www.bose.com/legal/returns-and-exchanges",
+      "https://www.bose.com/legal/terms-of-sale"
+    ],
+    "evidence_excerpts": [
+      "1. CustomTune technology automatically analyzes ear canal acoustics upon power-up and calibrates ANC filters.",
+      "2. Testing conducted by Bose with active noise cancellation on and audio playback at 75 dB SPL. Battery life is reduced to ~18 hours when Immersive Audio is continuously engaged.",
+      "3. Snapdragon Sound support requires a compatible Android device with Snapdragon 8 Gen 2 or newer processor.",
+      "4. Quick charging requires a minimum 5V/3A USB-A or USB-C power source."
+    ],
+    "input": {
+      "url": "https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html"
+    },
+    "scraped_at": "2026-08-22T11:00:00.000Z"
+  }
+]

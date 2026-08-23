@@ -22,6 +22,21 @@ export async function GET() {
         healedArtifact: 'artifacts/sony-wh1000xm5-healed.json',
       },
       {
+        name: 'Apple AirPods Max',
+        url: 'https://www.apple.com/airpods-max/',
+        artifact: 'artifacts/apple-airpods-max-run.json',
+      },
+      {
+        name: 'Bose QuietComfort Ultra',
+        url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html',
+        artifact: 'artifacts/bose-qc-ultra-run.json',
+      },
+      {
+        name: 'Samsung Galaxy S24 Ultra',
+        url: 'https://www.samsung.com/us/smartphones/galaxy-s24-ultra/',
+        artifact: 'artifacts/samsung-galaxy-s24-ultra-run.json',
+      },
+      {
         name: 'Sony WH-1000XM4',
         url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm4',
         artifact: 'artifacts/sony-wh1000xm4-run.json',

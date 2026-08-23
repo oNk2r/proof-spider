@@ -1,0 +1,96 @@
+[
+  {
+    "product_title": "Samsung Galaxy S24 Ultra - 512GB Titanium Black (Unlocked)",
+    "brand": "Samsung",
+    "model_number": "SM-S928UZKEXAA",
+    "category": "Smartphones",
+    "current_price": {
+      "value": 1299.99,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "original_price": {
+      "value": 1419.99,
+      "currency": "USD",
+      "symbol": "$"
+    },
+    "savings_amount": "Save $120.00",
+    "product_image": "https://images.samsung.com/is/image/samsung/p6pim/us/2401/gallery/us-galaxy-s24-ultra-sm-s928-sm-s928uzkexaa-thumb-539572458",
+    "color": "Titanium Black",
+    "headline_claims": [
+      "200MP ProVisual Engine Camera with 5x Optical Zoom 1",
+      "Galaxy AI built-in with Live Translate & Circle to Search 2",
+      "Up to 30 hours video playback with 5,000mAh intelligent battery 3"
+    ],
+    "key_features": [
+      "200MP ProVisual Engine Camera with 5x Optical Zoom 1",
+      "Galaxy AI built-in with Live Translate & Circle to Search 2",
+      "Up to 30 hours video playback with 5,000mAh intelligent battery 3",
+      "Durable Titanium frame with Corning Gorilla Armor anti-reflective glass",
+      "Snapdragon 8 Gen 3 for Galaxy with 1.9x larger vapor chamber cooling"
+    ],
+    "icon_features": [
+      "Galaxy AI Suite",
+      "200MP ProVisual Camera",
+      "5x Optical 50MP Zoom",
+      "Titanium Shield Armor",
+      "6.8\" QHD+ Dynamic AMOLED 2X",
+      "2600 nits Peak Brightness",
+      "5000 mAh All-Day Battery",
+      "Built-in S Pen Stylus"
+    ],
+    "key_specs": [
+      {
+        "label": "Display",
+        "value": "6.8-inch Dynamic AMOLED 2X, 3120 x 1440 (Quad HD+), 120Hz adaptive, 2,600 nits peak"
+      },
+      {
+        "label": "Processor",
+        "value": "Snapdragon 8 Gen 3 for Galaxy (Octa-Core up to 3.39GHz)"
+      },
+      {
+        "label": "Rear Camera",
+        "value": "200MP Wide (f/1.7) + 50MP Telephoto (5x optical) + 10MP Telephoto (3x) + 12MP Ultra-Wide"
+      },
+      {
+        "label": "Front Camera",
+        "value": "12MP Dual Pixel AF (f/2.2)"
+      },
+      {
+        "label": "Battery & Charging",
+        "value": "5000 mAh, 45W Fast Wired Charging (65% in 30 min), Fast Wireless Charging 2.0"
+      },
+      {
+        "label": "Durability",
+        "value": "Titanium Frame, Corning Gorilla Armor, IP68 water & dust resistance"
+      },
+      {
+        "label": "Weight",
+        "value": "232 g (8.18 oz)"
+      },
+      {
+        "label": "Connectivity",
+        "value": "5G Sub6/mmWave, Wi-Fi 7, Bluetooth 5.3, Ultra-Wideband (UWB)"
+      }
+    ],
+    "warranty_or_support_links": [
+      "https://www.samsung.com/us/support/warranty/",
+      "https://www.samsung.com/us/support/service/",
+      "https://www.samsung.com/us/support/contact/"
+    ],
+    "return_policy_links": [
+      "https://www.samsung.com/us/trade-in/terms-and-conditions/",
+      "https://www.samsung.com/us/support/customer-shopping-faqs/"
+    ],
+    "evidence_excerpts": [
+      "1. 200MP camera resolution is available in photo mode on the main wide sensor. Optical quality 2x and 10x zoom enabled by Adaptive Pixel sensor combining pixel binning and AI super resolution.",
+      "2. Galaxy AI features provided for free until end of 2025 on supported Samsung Galaxy devices. Samsung Account login and network connection required for cloud-based AI features.",
+      "3. Typical value tested under third-party laboratory conditions. Rated (minimum) capacity is 4,855mAh. Actual battery life varies by network environment, features, apps used, and call frequency.",
+      "4. IP68 rating based on lab test conditions for submersion in up to 1.5 meters of fresh water for up to 30 minutes. Not advised for beach or pool use."
+    ],
+    "input": {
+      "url": "https://www.samsung.com/us/smartphones/galaxy-s24-ultra/"
+    },
+    "scraped_at": "2026-08-22T16:45:00.000Z"
+  }
+]
