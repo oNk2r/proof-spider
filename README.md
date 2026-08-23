@@ -94,22 +94,26 @@ All Bright Data Scraper Studio interaction proofs are committed in the [`artifac
 
 | Artifact File | Role in Pipeline |
 |---|---|
-| [`artifacts/collector-create.json`](./artifacts/collector-create.json) | Proof of Scraper Studio collector creation |
+| [`artifacts/collector-create.json`](./artifacts/collector-create.json) | Proof of Scraper Studio collector creation (`c_mt1v2vo62kutyo7m6k`) |
 | [`artifacts/heal.json`](./artifacts/heal.json) | Output of self-healing session (`awaiting_approval`) |
 | [`artifacts/heal-approved.json`](./artifacts/heal-approved.json) | Proof of approved healed schema |
 | [`artifacts/sony-wh1000xm5-healed.json`](./artifacts/sony-wh1000xm5-healed.json) | Production scrape output from healed collector |
-| [`artifacts/sony-wh1000xm4-run.json`](./artifacts/sony-wh1000xm4-run.json) | Cross-target reuse verification on WH-1000XM4 |
-| [`artifacts/sony-whch720n-run.json`](./artifacts/sony-whch720n-run.json) | Cross-target reuse verification on WH-CH720N |
+| [`artifacts/apple-airpods-max-run.json`](./artifacts/apple-airpods-max-run.json) | Verified scraper run on Apple AirPods Max |
+| [`artifacts/bose-qc-ultra-run.json`](./artifacts/bose-qc-ultra-run.json) | Verified scraper run on Bose QC Ultra |
+| [`artifacts/samsung-galaxy-s24-ultra-run.json`](./artifacts/samsung-galaxy-s24-ultra-run.json) | Verified scraper run on Samsung Galaxy S24 Ultra |
+| [`artifacts/sony-wh1000xm4-run.json`](./artifacts/sony-wh1000xm4-run.json) | Cross-target verification on Sony WH-1000XM4 |
+| [`artifacts/sony-whch720n-run.json`](./artifacts/sony-whch720n-run.json) | Cross-target verification on Sony WH-CH720N |
 | [`artifacts/normalized-proofspider-result.json`](./artifacts/normalized-proofspider-result.json) | Normalized analysis pipeline output |
 
 ---
 
-### 3. Dual-Mode Runtime Architecture
+### 3. Dual-Mode Runtime Architecture & Self-Healing Fallback
 
-ProofSpider is engineered with a **Dual-Mode Engine** in [`src/lib/brightdata.ts`](./src/lib/brightdata.ts):
+ProofSpider is engineered with an adaptive multi-tier runtime in [`src/lib/brightdata.ts`](./src/lib/brightdata.ts) & [`src/lib/live-extractor.ts`](./src/lib/live-extractor.ts):
 
-1. **Live Trigger & Polling Mode:** When `BRIGHTDATA_API_KEY` is present, the app triggers asynchronous collector jobs via Bright Data's REST API (`https://api.brightdata.com/dca/trigger`), polls for completion, and streams fresh structured data.
-2. **Verified Snapshot Fallback Mode:** When running offline or evaluating without an API key, the app serves high-fidelity verified collector runs for benchmark targets (Sony WH-1000XM5, WH-1000XM4, and WH-CH720N).
+1. **Live Trigger & Polling Mode:** When `BRIGHTDATA_API_KEY` is present, the app triggers asynchronous collector jobs via Bright Data's Web Scraper API, polls for completion, and streams fresh structured data.
+2. **Self-Healing Live Extractor:** If custom cloud dataset execution is unavailable or unprovisioned, ProofSpider dynamically parses the live URL in real-time (extracting JSON-LD schemas, OpenGraph tags, hardware specs, claims, and fine-print footnotes).
+3. **Verified Snapshot Mode:** For zero-config instant evaluation without an API key, the app serves pre-recorded verified collector runs across flagship hardware targets (Sony, Apple, Bose, Samsung).
 
 ---
 
