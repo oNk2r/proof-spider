@@ -3,17 +3,14 @@
 import { FormEvent, useState, useEffect, useRef } from 'react';
 import { ArrowRight, Link as LinkIcon, Search } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const EXAMPLES = [
-  { label: 'WH-1000XM5', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5', note: 'HEALED RUN' },
-  { label: 'WH-1000XM4', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm4', note: 'VERIFIED RUN' },
-  { label: 'WH-CH720N', url: 'https://www.sony.com/electronics/headband-headphones/wh-ch720n', note: 'VERIFIED RUN' },
-];
-
-const SIGNALS = [
-  ['01', 'TITLE', 'Product title'], ['02', 'SKU', 'Model / SKU'], ['03', 'VAL', 'Price analysis'], ['04', 'CLM', 'Core claims'],
-  ['05', 'SPC', 'Specifications'], ['06', 'SUP', 'Support links'], ['07', 'RTN', 'Return policy'], ['08', 'EVD', 'Evidence trail'],
+  { label: 'Sony WH-1000XM5', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5', note: 'HEALED RUN' },
+  { label: 'Apple AirPods Max', url: 'https://www.apple.com/airpods-max/', note: 'VERIFIED RUN' },
+  { label: 'Bose QC Ultra', url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html', note: 'VERIFIED RUN' },
+  { label: 'Galaxy S24 Ultra', url: 'https://www.samsung.com/us/smartphones/galaxy-s24-ultra/', note: 'VERIFIED RUN' },
 ];
 
 /* ---- Web particles floating in the background ---- */
@@ -275,10 +272,14 @@ export default function Home() {
 
             {/* Product Image */}
             <div className="ps-product-image-wrap">
-              <img
+              <Image
                 src="/assets/product-hero.jpg"
                 alt="Sony WH-1000XM5 Live Product Target"
+                width={400}
+                height={400}
+                priority
                 className="ps-product-image"
+                style={{ objectFit: 'contain', width: '100%', height: '100%' }}
               />
             </div>
 
@@ -340,6 +341,13 @@ export default function Home() {
       </div>
     </section>
 
-    <footer className="ps-footer"><div><span>08 EVIDENCE DIMENSIONS</span><span>04 VERDICT TYPES</span><span>100% SOURCE LINKED</span></div><p>© 2026 PROOFSPIDER <span>{'//'}</span> NODE-001-ALPHA</p><aside><span>SUPPORTED <i className="green" /></span><span>QUALIFIED <i className="blue" /></span><span>CONFLICTED <i className="orange" /></span><span>UNKNOWN <i /></span></aside></footer>
+    {/* Minimal Clean Footer */}
+    <footer className="ps-footer" aria-label="System footer">
+      <div className="ps-footer-simple">
+        <p className="ps-footer-text">
+          Built for <span className="ps-footer-highlight">Into the Scrape-Verse</span> <span className="ps-footer-sep">•</span> <span className="ps-footer-highlight">WeMakeDevs</span> <span className="ps-footer-sep">×</span> <span className="ps-footer-brand">Bright Data</span>
+        </p>
+      </div>
+    </footer>
   </main>;
 }

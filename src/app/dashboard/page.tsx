@@ -24,9 +24,10 @@ import type { AnalyzedClaim, ClaimVerdict, ProductAnalysis } from '@/types/proof
 const DEFAULT_URL = 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5';
 
 const EXAMPLES = [
-  { label: 'WH-1000XM5', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5', note: 'HEALED RUN' },
-  { label: 'WH-1000XM4', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm4', note: 'VERIFIED RUN' },
-  { label: 'WH-CH720N', url: 'https://www.sony.com/electronics/headband-headphones/wh-ch720n', note: 'VERIFIED RUN' },
+  { label: 'Sony WH-1000XM5', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5', note: 'HEALED RUN' },
+  { label: 'Apple AirPods Max', url: 'https://www.apple.com/airpods-max/', note: 'VERIFIED RUN' },
+  { label: 'Bose QC Ultra', url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html', note: 'VERIFIED RUN' },
+  { label: 'Galaxy S24 Ultra', url: 'https://www.samsung.com/us/smartphones/galaxy-s24-ultra/', note: 'VERIFIED RUN' },
 ];
 
 const VERDICT_CONFIG: Record<
@@ -71,6 +72,8 @@ function DashboardContent() {
   const [activeTab, setActiveTab] = useState<'claims' | 'specs' | 'policies'>('claims');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeSignal, setActiveSignal] = useState<string | null>(null);
+  const [activePin, setActivePin] = useState<string | null>(null);
 
   async function fetchAnalysis(urlToAnalyze: string) {
     setLoading(true);
@@ -133,6 +136,47 @@ function DashboardContent() {
     conflicted: analysis?.claims.filter((c) => c.verdict === 'Conflicted').length || 0,
     unknown: analysis?.claims.filter((c) => c.verdict === 'Unknown').length || 0,
   };
+
+  const dynamicSignalsLeft = useMemo(() => {
+    if (!analysis) return [];
+    const sku = analysis.modelNumber || 'SKU DETECTED';
+    const priceText = analysis.price ? `${analysis.price.symbol || '$'}${analysis.price.value.toFixed(2)}` : 'MARKET PRICE';
+    const firstClaim = analysis.claims[0]?.claimText || 'Extracted Product Claims';
+    return [
+      { num: '01', code: 'BRAND', label: 'Domain Brand', excerpt: `${analysis.brand} • Authenticated Target`, status: 'VERIFIED', filter: 'ALL' },
+      { num: '02', code: 'SKU', label: 'Model / Identifier', excerpt: sku, status: 'MATCHED', filter: 'ALL' },
+      { num: '03', code: 'VAL', label: 'Price Analysis', excerpt: priceText + (analysis.price?.savings ? ` (${analysis.price.savings})` : ''), status: 'PARSED', filter: 'ALL' },
+      { num: '04', code: 'CLM', label: 'Claims Matrix', excerpt: firstClaim, status: `${analysis.claims.length} DETECTED`, filter: 'ALL' },
+    ];
+  }, [analysis]);
+
+  const dynamicSignalsRight = useMemo(() => {
+    if (!analysis) return [];
+    const firstSpec = analysis.specs[0] ? `${analysis.specs[0].label}: ${analysis.specs[0].value}` : 'Core Hardware Specifications';
+    const supportExcerpt = analysis.warrantyAndSupportLinks[0]?.title || 'Manufacturer Warranty Portal';
+    const returnExcerpt = analysis.returnPolicyLinks[0]?.title || 'Standard Consumer Return Policy';
+    const footExcerpt = analysis.evidenceExcerpts[0] || 'Technical Footnote Verification';
+    return [
+      { num: '05', code: 'SPC', label: 'Extracted Specs', excerpt: firstSpec, status: `${analysis.specs.length} INDEXED`, tab: 'specs' as const },
+      { num: '06', code: 'SUP', label: 'Warranty Endpoints', excerpt: supportExcerpt, status: 'RESOLVED', tab: 'policies' as const },
+      { num: '07', code: 'RTN', label: 'Return Policy', excerpt: returnExcerpt, status: 'VERIFIED', tab: 'policies' as const },
+      { num: '08', code: 'EVD', label: 'Evidence Footnotes', excerpt: footExcerpt, status: `${analysis.evidenceExcerpts.length} EXTRACTS`, tab: 'policies' as const },
+    ];
+  }, [analysis]);
+
+  const dynamicPins = useMemo(() => {
+    if (!analysis) return [];
+    const supportedCount = analysis.claims.filter((c) => c.verdict === 'Supported').length;
+    const qualifiedCount = analysis.claims.filter((c) => c.verdict === 'Qualified').length;
+    const specsCount = analysis.specs.length;
+    const returnCount = (analysis.warrantyAndSupportLinks?.length || 0) + (analysis.returnPolicyLinks?.length || 0);
+    return [
+      { id: 'pin-1', top: '24%', left: '26%', label: 'HARDWARE & SPECS', sub: `${specsCount} Specifications Indexed`, tab: 'specs' as const },
+      { id: 'pin-2', top: '30%', left: '74%', label: 'SUPPORTED CLAIMS', sub: `${supportedCount} Claims Verified`, filter: 'Supported' },
+      { id: 'pin-3', top: '68%', left: '28%', label: 'QUALIFIED CLAIMS', sub: `${qualifiedCount} Conditioned Footnotes`, filter: 'Qualified' },
+      { id: 'pin-4', top: '64%', left: '72%', label: 'POLICY EVIDENCE', sub: `${returnCount} Policies Verified`, tab: 'policies' as const },
+    ];
+  }, [analysis]);
 
   return (
     <main className="ps-dashboard">
@@ -207,26 +251,65 @@ function DashboardContent() {
             className="ps-panel"
             style={{
               borderColor: 'rgba(237,28,36,0.5)',
-              background: 'rgba(28,14,16,0.85)',
+              background: 'radial-gradient(ellipse at 50% 0%, rgba(237,28,36,0.1) 0%, rgba(18,12,16,0.95) 75%)',
               padding: '2.5rem',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', color: 'var(--signal)' }}>
               <CircleAlert size={22} />
               <h2 style={{ margin: 0, fontSize: '1.1rem', letterSpacing: '0.05em' }}>
-                EVIDENCE COLLECTION FAILED
+                EVIDENCE COLLECTION NOTICE
               </h2>
             </div>
             <p style={{ marginTop: '1rem', color: '#d0cbd4', fontSize: '0.85rem', lineHeight: 1.7, fontFamily: 'IBM Plex Sans, sans-serif' }}>
               {error}
             </p>
-            <button
-              onClick={() => fetchAnalysis(inputUrl)}
-              className="ps-nav-action"
-              style={{ marginTop: '1.5rem', background: 'var(--signal)', color: '#000', fontWeight: 700 }}
+
+            {/* How to enable live scraping guide */}
+            <div
+              style={{
+                marginTop: '1.25rem',
+                padding: '1.25rem',
+                background: 'rgba(9,8,12,0.85)',
+                border: '1px solid rgba(237,28,36,0.25)',
+                borderRadius: '0.5rem',
+                fontSize: '0.78rem',
+                fontFamily: 'Space Mono, monospace',
+                color: '#c5c0cc',
+              }}
             >
-              RETRY COLLECTION <ArrowRight size={14} />
-            </button>
+              <div style={{ color: '#fff', fontWeight: 700, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ color: 'var(--signal)' }}>●</span> HOW TO ENABLE LIVE SCRAPING ON ANY URL:
+              </div>
+              <p style={{ margin: '0.3rem 0', fontFamily: 'IBM Plex Sans, sans-serif', color: '#a8a3b0' }}>
+                To scrape arbitrary live web URLs in real-time, add your Bright Data API token in <code style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '0.15rem 0.4rem', borderRadius: '0.2rem' }}>.env.local</code>:
+              </p>
+              <pre style={{ margin: '0.6rem 0 0', padding: '0.75rem', background: '#050407', borderRadius: '0.35rem', color: '#4ade80', fontSize: '0.72rem', overflowX: 'auto' }}>
+                BRIGHTDATA_API_KEY=your_brightdata_api_token_here
+              </pre>
+            </div>
+
+            <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <button
+                onClick={() => fetchAnalysis(inputUrl)}
+                className="ps-nav-action"
+                style={{ background: 'var(--signal)', color: '#000', fontWeight: 700 }}
+              >
+                RETRY COLLECTION <ArrowRight size={14} />
+              </button>
+              <span style={{ fontSize: '0.7rem', color: '#777', margin: '0 0.5rem' }}>OR TRY A VERIFIED TARGET:</span>
+              {EXAMPLES.map((ex) => (
+                <button
+                  key={ex.label}
+                  type="button"
+                  onClick={() => handleSelectExample(ex.url)}
+                  className="ps-nav-action"
+                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', fontSize: '0.68rem' }}
+                >
+                  {ex.label}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
@@ -282,6 +365,144 @@ function DashboardContent() {
                 >
                   VIEW PUBLIC SOURCE <ArrowUpRight size={14} />
                 </a>
+              </div>
+            </section>
+
+            {/* Live Holographic Radar Target Audit Stage */}
+            <section className="ps-product-inspector-section ps-dashboard-inspector" aria-label="Live Evidence Target Scanner">
+              <div className="ps-section-header" style={{ marginBottom: '1.75rem' }}>
+                <span className="ps-hud-tag"><i className="ps-signal-dot" /> LIVE PRODUCT EVIDENCE SCANNER</span>
+                <h2>REAL-TIME TARGET AUDIT</h2>
+                <p>Interactive telemetry extracted from live public product specifications and benchmark footnotes</p>
+              </div>
+
+              <div className="ps-inspector-stage">
+                {/* Left Telemetry Signals */}
+                <div className="ps-signals-col ps-signals-left-col">
+                  {dynamicSignalsLeft.map((sig) => (
+                    <div
+                      key={sig.code}
+                      className={`ps-signal-card ${activeSignal === sig.code ? 'active' : ''}`}
+                      onMouseEnter={() => setActiveSignal(sig.code)}
+                      onMouseLeave={() => setActiveSignal(null)}
+                      onClick={() => {
+                        setActiveTab('claims');
+                        setVerdictFilter(sig.filter || 'ALL');
+                        document.getElementById('claims-matrix-section')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <div className="ps-signal-card-head">
+                        <b>{sig.num} LOC: {sig.code}</b>
+                        <span className="ps-sig-badge">{sig.status}</span>
+                      </div>
+                      <p className="ps-sig-label">{sig.label}</p>
+                      <p className="ps-sig-val">{sig.excerpt}</p>
+                      <div className="ps-sig-beam" />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Center Live Product Showcase with Hologram Scanner */}
+                <div className="ps-product-stage">
+                  <div className="ps-product-frame">
+                    <div className="ps-hud-corner ps-hud-tl" />
+                    <div className="ps-hud-corner ps-hud-tr" />
+                    <div className="ps-hud-corner ps-hud-bl" />
+                    <div className="ps-hud-corner ps-hud-br" />
+
+                    <div className="ps-scanner-beam" />
+                    
+                    <div className="ps-radar-rings" aria-hidden="true">
+                      <div className="ps-radar-ring-1" />
+                      <div className="ps-radar-ring-2" />
+                      <div className="ps-radar-ring-3" />
+                      <div className="ps-radar-sweep" />
+                    </div>
+
+                    <div className="ps-product-image-wrap">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={analysis.heroImageUrl || '/assets/product-hero.jpg'}
+                        alt={analysis.productName}
+                        className="ps-product-image"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = '/assets/product-hero.jpg';
+                        }}
+                      />
+                    </div>
+
+                    {dynamicPins.map((pin) => (
+                      <div
+                        key={pin.id}
+                        className={`ps-target-pin ${activePin === pin.id ? 'active' : ''}`}
+                        style={{ top: pin.top, left: pin.left }}
+                        onMouseEnter={() => setActivePin(pin.id)}
+                        onMouseLeave={() => setActivePin(null)}
+                        onClick={() => {
+                          if (pin.tab) setActiveTab(pin.tab);
+                          if (pin.filter) setVerdictFilter(pin.filter);
+                          document.getElementById('claims-matrix-section')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <div className="ps-pin-pulse" />
+                        <div className="ps-pin-dot" />
+                        <div className="ps-pin-callout">
+                          <b>{pin.label}</b>
+                          <span>{pin.sub}</span>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="ps-product-hud-bar">
+                      <div className="ps-hud-meta">
+                        <span className="ps-hud-target-name">{analysis.productName}</span>
+                        {analysis.price && (
+                          <span className="ps-hud-price">
+                            {analysis.price.symbol || '$'}{analysis.price.value.toFixed(2)}
+                            {analysis.price.originalValue && (
+                              <del style={{ marginLeft: '0.35rem', color: '#888' }}>
+                                {analysis.price.symbol || '$'}{analysis.price.originalValue.toFixed(2)}
+                              </del>
+                            )}
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          document.getElementById('claims-matrix-section')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="ps-hud-action"
+                      >
+                        VIEW MATRIX <ArrowRight size={13} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Telemetry Signals */}
+                <div className="ps-signals-col ps-signals-right-col">
+                  {dynamicSignalsRight.map((sig) => (
+                    <div
+                      key={sig.code}
+                      className={`ps-signal-card ${activeSignal === sig.code ? 'active' : ''}`}
+                      onMouseEnter={() => setActiveSignal(sig.code)}
+                      onMouseLeave={() => setActiveSignal(null)}
+                      onClick={() => {
+                        if (sig.tab) setActiveTab(sig.tab);
+                        document.getElementById('claims-matrix-section')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <div className="ps-signal-card-head">
+                        <b>{sig.num} LOC: {sig.code}</b>
+                        <span className="ps-sig-badge">{sig.status}</span>
+                      </div>
+                      <p className="ps-sig-label">{sig.label}</p>
+                      <p className="ps-sig-val">{sig.excerpt}</p>
+                      <div className="ps-sig-beam" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
 
@@ -381,7 +602,7 @@ function DashboardContent() {
             </section>
 
             {/* Dossier Navigation Tabs (Claims, Specs, Policies) */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            <div id="claims-matrix-section" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', scrollMarginTop: '2rem' }}>
               <div className="ps-tabs" role="tablist">
                 <button
                   role="tab"
@@ -713,30 +934,13 @@ function DashboardContent() {
         </div>
       )}
 
-      {/* Cybernetic Technical Footer */}
-      <footer className="ps-footer">
-        <div>
-          <span>08 EVIDENCE DIMENSIONS</span>
-          <span>04 VERDICT TYPES</span>
-          <span>100% SOURCE LINKED</span>
+      {/* Minimal Clean Footer */}
+      <footer className="ps-footer" aria-label="System footer">
+        <div className="ps-footer-simple">
+          <p className="ps-footer-text">
+            Built for <span className="ps-footer-highlight">Into the Scrape-Verse</span> <span className="ps-footer-sep">•</span> <span className="ps-footer-highlight">WeMakeDevs</span> <span className="ps-footer-sep">×</span> <span className="ps-footer-brand">Bright Data</span>
+          </p>
         </div>
-        <p>
-          © 2026 PROOFSPIDER <span>{'//'}</span> NODE-001-ALPHA
-        </p>
-        <aside>
-          <span>
-            SUPPORTED <i className="green" />
-          </span>
-          <span>
-            QUALIFIED <i className="blue" />
-          </span>
-          <span>
-            CONFLICTED <i className="orange" />
-          </span>
-          <span>
-            UNKNOWN <i />
-          </span>
-        </aside>
       </footer>
     </main>
   );
