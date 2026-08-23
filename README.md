@@ -8,14 +8,7 @@ Built for **Into the Scrape-Verse 2026** (WeMakeDevs + Bright Data).
 
 ---
 
-## ⚡ Why This Matters
-
-Brands market consumer hardware with bold headline claims — *"industry-leading noise cancellation"*, *"up to 30 hours battery"*, *"crystal-clear calls"*, and *"30-day money-back guarantee"*. Meanwhile, fine-print footnotes, operating-condition tables, and warranty clauses quietly qualify or restrict these statements.
-
-ProofSpider exposes that delta:
-- **Shoppers & Reviewers:** Instantly verify if a product's battery or ANC claims hold up under real-world conditions or depend on specific codec/volume constraints.
-- **AI Shopping & Research Agents:** Consume clean, structured evidence schemas rather than hallucinating over unstructured promotional marketing.
-- **Self-Healing Web Extraction:** Demonstrates how Bright Data Scraper Studio can diagnose extraction flaws, self-heal schemas, and maintain collector reliability.
+![ProofSpider Interface Preview](./public/assets/preview.png)
 
 ---
 
@@ -31,19 +24,17 @@ ProofSpider is built on a custom, self-healed collector created in **Bright Data
 | **Collector Type** | Custom Scraper Studio (AI prompt-driven schema) |
 
 ```mermaid
-flowchart TD
+flowchart LR
   A[Public Product URL] --> B[Bright Data Custom Scraper Studio\nCollector: c_mt1v2vo62kutyo7m6k]
   B --> C[Raw Extraction JSON\nClaims · Specs · Footnotes · Policies]
   C --> D[ProofSpider Normalizer\nnormalizeRawScraperOutput]
   D --> E[Conservative Evidence Analyzer\nCross-reference specs & footnotes]
-  E --> F[Interactive Cybernetic Dossier UI\nVerdict Matrix · Claims Explorer · Inspector Modal]
-  
+  E --> F[Interactive Cybernetic Dossier UI\nVerdict Matrix · Claims Explorer · Inspector]
+
   subgraph Self-Healing Pipeline
-    B1[Initial Scraper Create] --> B2[Detect Schema Gaps / Glitches]
-    B2 --> B3[bdata scraper heal]
-    B3 --> B4[bdata scraper approve]
-    B4 --> B[Production Verified Collector]
+    B1[bdata scraper create] --> B2[bdata scraper heal] --> B3[bdata scraper approve] --> B4[Production Verified Collector]
   end
+  B4 -.-> B
 ```
 
 ---
