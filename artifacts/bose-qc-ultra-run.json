@@ -15,7 +15,7 @@
       "symbol": "$"
     },
     "savings_amount": "Save $50.00",
-    "product_image": "https://assets.bosecreative.com/transform/4b17bc56-d667-4632-9df7-2384ba2fbafb/QCU_Headphone_Hero_Black",
+    "product_image": "https://m.media-amazon.com/images/I/51aXvjzcukL._AC_SL1500_.jpg",
     "color": "Black",
     "headline_claims": [
       "World-class noise cancellation optimized with CustomTune 1",
@@ -66,12 +66,10 @@
       }
     ],
     "warranty_or_support_links": [
-      "https://www.bose.com/support/warranty-information",
-      "https://support.bose.com/s/product/bose-quietcomfort-ultra-headphones",
+      "https://www.bose.com/legal/terms-of-sale",
       "https://www.bose.com/contact-us"
     ],
     "return_policy_links": [
-      "https://www.bose.com/legal/returns-and-exchanges",
       "https://www.bose.com/legal/terms-of-sale"
     ],
     "evidence_excerpts": [
@@ -81,7 +79,7 @@
       "4. Quick charging requires a minimum 5V/3A USB-A or USB-C power source."
     ],
     "input": {
-      "url": "https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html"
+      "url": "https://www.bose.com/en_us/products/headphones/noise_cancelling_headphones/quietcomfort-ultra-headphones.html"
     },
     "scraped_at": "2026-08-22T11:00:00.000Z"
   }

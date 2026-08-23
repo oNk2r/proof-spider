@@ -9,8 +9,6 @@ import { useRouter } from 'next/navigation';
 const EXAMPLES = [
   { label: 'Sony WH-1000XM5', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5', note: 'HEALED RUN' },
   { label: 'Apple AirPods Max', url: 'https://www.apple.com/airpods-max/', note: 'VERIFIED RUN' },
-  { label: 'Bose QC Ultra', url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html', note: 'VERIFIED RUN' },
-  { label: 'Galaxy S24 Ultra', url: 'https://www.samsung.com/us/smartphones/galaxy-s24-ultra/', note: 'VERIFIED RUN' },
 ];
 
 /* ---- SVG Spider Web pattern for the hero background (static coords to avoid hydration mismatch) ---- */
@@ -101,7 +99,6 @@ export default function Home() {
     </nav>
 
     <section className="ps-hero">
-      <p className="ps-kicker"><span className="ps-signal-dot" /> CUSTOM SCRAPER STUDIO COLLECTOR <span>•</span> PUBLIC PRODUCT PAGES</p>
       <h1>WHAT BRANDS CLAIM.<br />WHAT <em>EVIDENCE</em> SAYS.</h1>
       <p className="ps-subtitle">Turn public product claims into a structured evidence trail—specs, footnotes, and policy links in one report.</p>
       <form onSubmit={submit} className="ps-search" aria-label="Analyze a product page">
@@ -117,9 +114,7 @@ export default function Home() {
     {/* Live Product Evidence Radar Section */}
     <section className="ps-product-inspector-section" aria-label="Live Evidence Target Scanner">
       <div className="ps-section-header">
-        <span className="ps-hud-tag"><i className="ps-signal-dot" /> LIVE PRODUCT EVIDENCE SCANNER</span>
         <h2>REAL-TIME TARGET AUDIT</h2>
-        <p>Interactive telemetry extracted from live public product specifications and benchmark footnotes</p>
       </div>
 
       <div className="ps-inspector-stage">

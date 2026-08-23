@@ -15,7 +15,7 @@
       "symbol": "$"
     },
     "savings_amount": "Save $120.00",
-    "product_image": "https://images.samsung.com/is/image/samsung/p6pim/us/2401/gallery/us-galaxy-s24-ultra-sm-s928-sm-s928uzkexaa-thumb-539572458",
+    "product_image": "https://images.samsung.com/is/image/samsung/assets/us/smartphones/galaxy-s24-ultra/images/galaxy-s24-ultra-highlights-kv.jpg",
     "color": "Titanium Black",
     "headline_claims": [
       "200MP ProVisual Engine Camera with 5x Optical Zoom 1",
@@ -74,13 +74,11 @@
       }
     ],
     "warranty_or_support_links": [
-      "https://www.samsung.com/us/support/warranty/",
-      "https://www.samsung.com/us/support/service/",
+      "https://www.samsung.com/us/support/",
       "https://www.samsung.com/us/support/contact/"
     ],
     "return_policy_links": [
-      "https://www.samsung.com/us/trade-in/terms-and-conditions/",
-      "https://www.samsung.com/us/support/customer-shopping-faqs/"
+      "https://www.samsung.com/us/trade-in/terms-and-conditions/"
     ],
     "evidence_excerpts": [
       "1. 200MP camera resolution is available in photo mode on the main wide sensor. Optical quality 2x and 10x zoom enabled by Adaptive Pixel sensor combining pixel binning and AI super resolution.",

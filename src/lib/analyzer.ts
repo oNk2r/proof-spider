@@ -35,8 +35,12 @@ function titleFromPolicyUrl(url: string, type: PolicyCitation['type'], index: nu
   if (lower.includes('apple.com') && lower.includes('repair')) return 'Apple Official Service & Repair Terms';
   if (lower.includes('bose.com') && lower.includes('warranty')) return 'Bose Limited Consumer Warranty';
   if (lower.includes('bose.com') && lower.includes('returns')) return 'Bose 90-Day Risk-Free Trial & Returns';
+  if (lower.includes('bose.com') && lower.includes('terms-of-sale')) return 'Bose Official Terms of Sale & Returns';
+  if (lower.includes('bose.com') && lower.includes('contact')) return 'Bose Official Support & Customer Care';
   if (lower.includes('samsung.com') && lower.includes('warranty')) return 'Samsung Standard Limited Warranty';
   if (lower.includes('samsung.com') && (lower.includes('trade-in') || lower.includes('return') || lower.includes('shopping'))) return 'Samsung Direct Return & Trade-In Terms';
+  if (lower.includes('samsung.com') && lower.includes('contact')) return 'Samsung Customer Support & Service Portal';
+  if (lower.includes('samsung.com') && lower.includes('support')) return 'Samsung Official Product Support Portal';
   if (lower.includes('returns-policy') || lower.includes('/returns')) return 'Manufacturer Return & Refund Policy';
   if (lower.includes('articles/00234509') || lower.includes('/warranty')) return 'Sony Limited Consumer Hardware Warranty';
   if (lower.includes('articles/00199342')) return 'Sony US Purchase & Warranty Terms';
@@ -157,7 +161,10 @@ export function normalizeAndAnalyze(
     category,
     price,
     heroImageUrl,
-    sourceUrl,
+    sourceUrl:
+      raw.input?.url && (raw.input.url.startsWith('http://') || raw.input.url.startsWith('https://'))
+        ? raw.input.url
+        : sourceUrl,
     scrapedAt: raw.scraped_at || new Date().toISOString(),
     collectorId: COLLECTOR_ID,
     claims,

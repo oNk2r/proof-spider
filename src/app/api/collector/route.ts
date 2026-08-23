@@ -28,7 +28,7 @@ export async function GET() {
       },
       {
         name: 'Bose QuietComfort Ultra',
-        url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html',
+        url: 'https://www.bose.com/en_us/products/headphones/noise_cancelling_headphones/quietcomfort-ultra-headphones.html',
         artifact: 'artifacts/bose-qc-ultra-run.json',
       },
       {

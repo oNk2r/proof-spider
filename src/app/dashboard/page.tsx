@@ -26,8 +26,6 @@ const DEFAULT_URL = 'https://www.sony.com/electronics/headband-headphones/wh-100
 const EXAMPLES = [
   { label: 'Sony WH-1000XM5', url: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5', note: 'HEALED RUN' },
   { label: 'Apple AirPods Max', url: 'https://www.apple.com/airpods-max/', note: 'VERIFIED RUN' },
-  { label: 'Bose QC Ultra', url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html', note: 'VERIFIED RUN' },
-  { label: 'Galaxy S24 Ultra', url: 'https://www.samsung.com/us/smartphones/galaxy-s24-ultra/', note: 'VERIFIED RUN' },
 ];
 
 const VERDICT_CONFIG: Record<
@@ -371,9 +369,7 @@ function DashboardContent() {
             {/* Live Holographic Radar Target Audit Stage */}
             <section className="ps-product-inspector-section ps-dashboard-inspector" aria-label="Live Evidence Target Scanner">
               <div className="ps-section-header" style={{ marginBottom: '1.75rem' }}>
-                <span className="ps-hud-tag"><i className="ps-signal-dot" /> LIVE PRODUCT EVIDENCE SCANNER</span>
                 <h2>REAL-TIME TARGET AUDIT</h2>
-                <p>Interactive telemetry extracted from live public product specifications and benchmark footnotes</p>
               </div>
 
               <div className="ps-inspector-stage">
@@ -426,7 +422,16 @@ function DashboardContent() {
                         alt={analysis.productName}
                         className="ps-product-image"
                         onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src = '/assets/product-hero.jpg';
+                          const target = e.currentTarget as HTMLImageElement;
+                          const name = (analysis?.productName || '').toLowerCase();
+                          const brand = (analysis?.brand || '').toLowerCase();
+                          if (brand.includes('bose') || name.includes('bose') || name.includes('quietcomfort')) {
+                            target.src = '/assets/bose-qc-ultra.jpg';
+                          } else if (brand.includes('samsung') || name.includes('galaxy') || name.includes('s24')) {
+                            target.src = '/assets/galaxy-s24-ultra.jpg';
+                          } else {
+                            target.src = '/assets/product-hero.jpg';
+                          }
                         }}
                       />
                     </div>
