@@ -36,14 +36,6 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   font-family: 'Space Mono', monospace;
 }
 
-/* ── Web particle canvas ── */
-.ps-web-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.7;
-}
 
 /* ── Spider web SVG background ── */
 .ps-spider-web-svg {
@@ -64,53 +56,6 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   to { transform: translate(-50%, -55%) rotate(360deg); }
 }
 
-/* ── Ambient glow orbs ── */
-.ps-ambient-orbs {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.ps-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0;
-  animation: ps-orb-float 12s ease-in-out infinite;
-}
-
-.ps-orb-red {
-  width: 400px; height: 400px;
-  top: -5%;
-  right: 10%;
-  background: radial-gradient(circle, rgba(237,28,36,0.2) 0%, transparent 70%);
-  animation-delay: 0s;
-}
-
-.ps-orb-blue {
-  width: 350px; height: 350px;
-  bottom: 10%;
-  left: 5%;
-  background: radial-gradient(circle, rgba(30,64,175,0.18) 0%, transparent 70%);
-  animation-delay: -4s;
-}
-
-.ps-orb-red-2 {
-  width: 300px; height: 300px;
-  top: 40%;
-  left: 60%;
-  background: radial-gradient(circle, rgba(237,28,36,0.12) 0%, transparent 70%);
-  animation-delay: -8s;
-}
-
-@keyframes ps-orb-float {
-  0%, 100% { opacity: 0.4; transform: translate(0, 0) scale(1); }
-  25% { opacity: 0.7; transform: translate(30px, -20px) scale(1.1); }
-  50% { opacity: 0.5; transform: translate(-15px, 15px) scale(0.95); }
-  75% { opacity: 0.8; transform: translate(20px, 10px) scale(1.05); }
-}
 
 /* ── Web strings / shooting webs ── */
 .ps-web-strings {

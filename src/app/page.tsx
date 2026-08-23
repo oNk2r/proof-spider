@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState, useEffect, useRef } from 'react';
+import { FormEvent, useState } from 'react';
 import { ArrowRight, Link as LinkIcon, Search } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,103 +12,6 @@ const EXAMPLES = [
   { label: 'Bose QC Ultra', url: 'https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCU-HEADPHONEARN.html', note: 'VERIFIED RUN' },
   { label: 'Galaxy S24 Ultra', url: 'https://www.samsung.com/us/smartphones/galaxy-s24-ultra/', note: 'VERIFIED RUN' },
 ];
-
-/* ---- Web particles floating in the background ---- */
-function WebParticles() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animId: number;
-    const dpr = window.devicePixelRatio || 1;
-    const particles: { x: number; y: number; vx: number; vy: number; r: number; o: number; color: string }[] = [];
-
-    function resize() {
-      if (!canvas) return;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function init() {
-      resize();
-      const count = Math.min(65, Math.floor(window.innerWidth / 22));
-      particles.length = 0;
-      for (let i = 0; i < count; i++) {
-        const isRed = Math.random() > 0.45;
-        particles.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          r: Math.random() * 2.2 + 0.6,
-          o: Math.random() * 0.5 + 0.12,
-          color: isRed ? `rgba(237,28,36,` : `rgba(30,64,175,`,
-        });
-      }
-    }
-
-    function draw() {
-      if (!ctx || !canvas) return;
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      // Draw web connections between nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            const alpha = (1 - dist / 150) * 0.12;
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(237,28,36,${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = w;
-        if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h;
-        if (p.y > h) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + p.o + ')';
-        ctx.fill();
-
-        // Glow
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + (p.o * 0.15) + ')';
-        ctx.fill();
-      }
-
-      animId = requestAnimationFrame(draw);
-    }
-
-    init();
-    draw();
-    window.addEventListener('resize', init);
-    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', init); };
-  }, []);
-
-  return <canvas ref={canvasRef} className="ps-web-canvas" aria-hidden="true" />;
-}
 
 /* ---- SVG Spider Web pattern for the hero background (static coords to avoid hydration mismatch) ---- */
 function SpiderWebSVG() {
@@ -188,16 +91,8 @@ export default function Home() {
   };
 
   return <main className="ps-home">
-    <WebParticles />
     <SpiderWebSVG />
     <WebStrings />
-
-    {/* Ambient glow orbs */}
-    <div className="ps-ambient-orbs" aria-hidden="true">
-      <div className="ps-orb ps-orb-red" />
-      <div className="ps-orb ps-orb-blue" />
-      <div className="ps-orb ps-orb-red-2" />
-    </div>
 
     <nav className="ps-nav" aria-label="Primary navigation">
       <Link href="/" className="ps-logo">PROOF<span>·</span>SPIDER</Link>
